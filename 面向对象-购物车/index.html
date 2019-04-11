@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="cart.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li,input,p{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			ul{
+				float: left;
+				margin: 0 auto;
+				padding: 10px;
+			}
+			img{
+				width: 240px;
+				height: 150px;
+			}
+			li{
+				margin: 5px;
+				float: left;
+				border: 1px solid #CECECE;
+			}
+			span{
+				padding: 0 15px;
+				color: red;
+				}
+			input{
+				background: red;
+				border: none;
+				outline: none;
+				margin-left: 100px;
+			}
+			p{
+				margin: 10px 0;
+			}
+			#num{
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				width: 30px;
+				height: 30px;
+				font-size: 20px;
+				border: 1px solid #CECECE;
+				text-align: center;
+				line-height: 30px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<ul id="cartList"></ul>
+		<div id="num"></div>
+		<script type="text/javascript">
+			var oCartList = document.getElementById("cartList");
+			var str = "";
+			for(let i = 0; i < data.length;i++){
+				str += `<li>
+						<img src="${data[i].imgSrc}"/>
+						<p>${data[i].title}</p>
+						<span>${data[i].price}</span>
+						<input type="button" data-id="${data[i].id}" class="addcart" value="添加购物车"/>
+					</li>`
+			}
+			oCartList.innerHTML = str;
+			
+			var oNum = document.getElementById("num");
+			 
+			var addCart = document.getElementsByClassName("addcart");
+			for(let i = 0 ;i < addCart.length;i++){
+				addCart[i].onclick = function(){
+					var id = this.getAttribute("data-id");
+					cart.addCart(id,1);
+					//点击获取总数量；
+					cart.getTotalNum(); 
+					oNum.innerHTML = cart.sum
+				}
+			}
+			
+			
+			
+			
+			var cart = new shoppingCart();//普通函数和new一起运算  // 实例  
+			//再次调用总数量为了在页面实时显示购物车总数量
+			cart.getTotalNum();
+			oNum.innerHTML = cart.sum
+			
+		</script>
+		
+		
+	</body>
+</html>

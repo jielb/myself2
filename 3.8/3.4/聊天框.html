@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			#fox{
+				margin: 50px 0 0 400px;
+				padding: 3px 0 5px 5px;
+				width: 300px;
+				height: 300px;
+				border: 1px solid #00BFFF;
+			}
+			#cont{
+				width: 290px;
+				height: 200px;
+				margin-bottom: 10px;
+				border: 1px solid #C1C1C1;
+				overflow: auto;
+			}
+			#txt{
+				width: 290px;
+				height: 40px;
+				margin-bottom: 5px;
+				outline: none;
+				border: 1px solid #00BFFF;
+			}
+			#btn{
+				margin-left: 250px;
+			}
+			
+			
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		<div id="fox">
+			<div id="cont">
+			</div>
+			<input type="text" id="txt"> 
+			<input type="button" id="btn" value="发送"/>
+		</div>
+		<script type="text/javascript">
+			var oCont = document.getElementById("cont");
+			var oTxt = document.getElementById("txt");
+			var oBtn = document.getElementById("btn");
+			 
+			oBtn.onclick = function(){ 
+				var val = oTxt.value;
+				oCont.children[0].innerHTML += "<p>" + val + "</p>";
+				oTxt.value = ""; 
+				oCont.scrollTop = oCont.scrollHeight - oCont.clientHeight ;
+				  
+			}
+			 
+			document.onkeydown = function(e){  
+				var evt = e || event;
+				 if(evt.ctrlKey == true && evt.keyCode == 13){
+				 	var val = oTxt.value;
+					oCont.children[0].innerHTML += "<p>" + val + "</p>";
+					oTxt.value = "";
+				 } 
+				oCont.scrollTop =oCont.scrollHeight - oCont.clientHeight;	 
+			}
+			
+			
+		</script>
+	</body>
+</html>

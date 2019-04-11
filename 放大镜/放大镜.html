@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,ul,li{
+				margin: 0;
+				padding: 0;
+			} 
+			img{
+				display: block;
+				border: none;
+			}
+			li{
+				list-style: none;
+			}
+			#zoomArea{
+				margin: 20px;
+				position: relative;
+				width: 200px; 
+			}
+			#midArea{
+				width: 200px;
+				border: 1px solid #CECECE;
+			}
+			#midArea img{
+				width: 200px;
+				height: 200px;
+			}
+			#midArea #zoom{
+				width: 100px;
+				height: 100px;
+				background: yellow;
+				opacity: .5;
+				filter: alpha(opacity = 50);
+				cursor: move;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			#minArea{
+				
+			}
+			#minArea img{
+				width: 50px;
+				height: 50px;
+				float: left;
+			}
+			#bigArea{ 
+				overflow: hidden;
+				display: none;
+				position: absolute;
+				left: 200px;
+				top: 0px;
+				width: 200px;
+				height: 200px;
+				border:1px solid #CECECE;
+			}
+			#bigArea img{
+				position: absolute;
+				width: 400px;
+				height: 400px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="zoomArea">
+			<div id="midArea">
+				<img src="img/m01.jpg" />
+				<div id="zoom"/></div>
+			</div> 	
+			<div id="minArea"></div>
+			<div id="bigArea">
+				<img src="img/m01.jpg" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			var data = ["img/m01.jpg","img/m02.jpg","img/m03.jpg","img/m03.jpg","img/m05.jpg","img/m06.jpg","img/m07.jpg"]
+				function $id(id){
+					return document.getElementById(id);
+				}
+				
+				var zoomArea = $id("zoomArea");
+				var midArea = $id("midArea");
+				var midImg = midArea.children[0];
+				var zoom = $id("zoom");
+				var minArea = $id("minArea");
+				var bigArea = $id("bigArea");	 
+				var bigImg = bigArea.children[0];
+				let str ="";
+				for(let i = 0; i < data.length; i++){
+					str += `<img src="${data[i]}"/>`		
+				}
+				minArea.innerHTML = str;
+				let oImg = minArea.children;
+				for(let i = 0 ; i < data.length; i++){
+					oImg[i].onclick = function(){
+						midImg.src = data[i];
+						bigImg.src = data[i];
+					}
+				}
+				
+				 
+				midArea.onmouseover = function(e){ 
+					zoom.style.display = "block";
+					bigArea.style.display = "block"; 	
+				}
+				midArea.onmousemove = function(e){
+					var evt = e || event;
+					var left = evt.pageX - zoomArea.offsetLeft - midArea.offsetLeft - zoom.offsetWidth/2;
+					var top = evt.pageY - zoomArea.offsetTop - midArea.offsetTop - zoom.offsetHeight/2;
+					var x = midArea.offsetWidth + midArea.offsetLeft - zoom.offsetWidth;
+					var y = midArea.offsetHeight + midArea.offsetTop - zoom.offsetHeight;
+					
+					left = left <= midArea.offsetLeft ? midArea.offsetLeft : left ;
+					top = top <= midArea.offsetTop ? midArea.offsetTop : top ;
+					left = left >= x ? x: left;
+					top = top >= y? y: top;
+					
+					zoom.style.left = left + "px";
+					zoom.style.top = top + "px";
+					
+				console.log(x/midArea.offsetWidth)
+					bigImg.style.left = -left/midArea.offsetWidth*bigImg.offsetWidth + "px";
+					bigImg.style.top = -top/midArea.offsetHeight*bigImg.offsetHeight + "px";
+				}
+				midArea.onmouseout = function(){
+					midAreaonmousemove = "";
+					zoom.style.display = "none";
+					bigArea.style.display = "none"; 
+				}
+				
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html{
+				height: 100%;
+			}
+			body{
+				padding: 0;
+				margin: 0;
+				height: 100%;
+				background: url(bg.jpg) no-repeat;
+				background-size: cover;
+			}
+			img{
+				width: 20px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<script src="startMove.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//定义萤火虫类
+			
+			//原型对象
+			function FireWorm(){
+				this.node = document.createElement("img");
+				this.node.src = "1.jpg";
+				//console.log(this)//指向FireWorm   FireWorm{node:img}
+				//console.log(this.node)//<img src="" style=""/>
+			}
+			//原型对象解决萤火虫getRandPos,show,fly相同方法，解决代码冗余
+			//相同出现位置范围，出现方式，fly运动方式
+			FireWorm.prototype.getRandPos = function(){
+				var cw = document.documentElement.clientWidth;
+				var ch = document.documentElement.clientHeight;
+				this.posX = Math.floor(Math.random()*(cw-50));
+				this.posY = Math.floor(Math.random()*(ch-50));
+			}
+			FireWorm.prototype.show = function(){
+				this.getRandPos();
+				console.log(this)
+				this.node.style.left = this.posX + "px";
+				this.node.style.top = this.posY +"px";
+				document.body.appendChild(this.node);
+			}
+			FireWorm.prototype.fly = function(){
+				this.getRandPos();
+				startMove(this.node,{left:this.posX,top:this.posY},()=>{
+					this.fly();
+				})
+			}
+			
+			for(var i = 0; i < 100; i++){
+				var oFw = new FireWorm();//创建一个实例
+				oFw.show();
+				oFw.fly();
+			}
+			
+		</script>
+	</body>
+</html>

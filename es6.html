@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="ES6测试" />
+		<script type="text/javascript">
+		/*	if(true) {
+				let a = 10;
+			}*/
+
+		/*	function foo(){
+				let a = 10 ; 	
+			}
+			
+			function foo(){
+				let a = 10;
+			}
+			*/
+	//		let a = 10;
+			
+		let oBtn = document.getElementById("btn")
+		oBtn.onclick = function(){
+			let a = 10
+			console.log(a)
+		}
+		oBtn.onclick = function(){
+			let a = 20
+			console.log(a)
+		}
+		</script>
+	</body>
+
+</html>

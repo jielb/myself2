@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,ul,li{
+				margin: 0;
+				padding:0;
+			}
+			li{
+				list-style: none;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			#fox{
+				position: relative;
+				width: 500px;
+				height: 300px;
+				border: 1px solid #cecece;
+				margin: 50px auto;
+				/*overflow: hidden;*/
+			}
+			#box img{
+				position: absolute;
+				width: 500px;
+				height: 300px;
+				float: left;
+			}
+			
+			#jiaobiao{
+				position: absolute;
+				right: 20px;
+				bottom: 20px;
+				z-index: 1000000;
+			}
+			#jiaobiao span{
+				margin-left: 5px;
+				border: 1px solid #cecece;
+				cursor: pointer;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				display: block;
+				float: left;
+				background: #fff;
+				color: red;
+			}
+			#jiaobiao span:hover{
+				background: red;
+				color: white;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="fox">	
+			<ul id="box">
+				<li>
+					<img src="img/154721275935222439.jpg"/>
+				</li>
+				<li>
+					<img src="img/154745389746474714.jpg"/>
+				</li>
+				<li>
+					<img src="img/154736186749218473.jpg"/>
+				</li> 
+			</ul>
+			<div id="jiaobiao">	
+				<span>1</span>
+				<span>2</span>
+				<span>3</span>
+			</div>	
+		</div>
+		<script type="text/javascript">
+			var aLi = document.getElementsByTagName("li");
+			var oSpan = document.getElementsByTagName("span");
+			 
+			for(let i = 0 ;i < oSpan.length ;i++){
+				oSpan[i].onclick = function(){
+					 
+					for(var j = 0 ; j < oSpan.length; j++){ 
+						aLi[j].children[0].style.zIndex = 0;
+					}
+					
+					aLi[i].children[0].style.zIndex = 1;
+					 
+				}
+			}
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

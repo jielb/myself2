@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="ajax.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 200px;
+				margin: 50px 500px;
+				position: relative;
+			}
+			#txt{
+				width: 200px;
+				height: 30px;
+			}
+			#cont{
+				width: 198px;
+				height: 300px;
+				border: 1px solid #CECECE;
+				position: absolute;
+				left: 0px;
+				top: 40px; 
+				display: none;
+			}
+			#cont li{
+				width: 200px;
+				height: 20px;
+				padding-left: 10px;
+				border-bottom: 1px solid #CECECE;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text" id="txt" />
+			<ul id="cont">
+				
+			</ul>
+	</div> 
+		<script type="text/javascript">
+			let oBox = document.getElementById("box");
+			let oTxt = document.getElementById("txt");
+			let oCont = document.getElementById("cont");
+				
+			oTxt.oninput = function(){
+				var val = oTxt.value; 
+				oCont.style.display = "block";
+				ajax("get","aaa.json",{keywords:val},foo)
+			}
+			
+			function foo(data){
+				if(data == 0){
+					var str = "";
+					for(var i = 0 ; i　< data.length ;i++){
+						str += `<li>${data[i]}</li>`						
+					} 
+					oCont.innerHTML = str;
+				}
+			}
+			
+		</script>
+	</body>
+</html>

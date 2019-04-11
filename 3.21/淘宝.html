@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,
+			ul,
+			li {
+				padding: 0;
+				margin: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			a {
+				color: black;
+				text-decoration: none;
+			}
+			
+			#fox {
+				margin: 100px 400px;
+			}
+			
+			#txt {
+				outline: none;
+				width: 300px;
+				height: 30px;
+				padding-left: 15px;
+				line-height: 30px;
+				border: 3px solid orangered;
+				border-radius: 20px;
+			}
+			
+			#box {
+				position: relative;
+				float: left;
+				display: none;
+				margin: 20px 10px;
+				width: 300px;
+				border: 1px solid #CECECE;
+			}
+			
+			#box div {
+				float: left;
+			}
+			
+			#box div:first-child ul:first-child {
+				width: 300px;
+				line-height: 20px;
+				cursor: pointer;
+			}
+			
+			#box div:first-child ul:first-child a {
+				width: 285px;
+				padding-left: 15px;
+				display: block;
+			}
+			
+			#box div:first-child ul:first-child li:hover {
+				color: orangered;
+				background: #F0F8FF;
+			}
+			
+			#box div:last-child ul {
+				display: none;
+				position: absolute;
+				background: #c3c3c3;
+				width: 150px;
+				height: 100%;
+				top: 0px;
+				right: -3px;
+				margin-right: 3px;
+			}
+			
+			#box div:last-child ul li {
+				float: left;
+				margin-left: 10px;
+				margin-top: 5px;
+				width: 50px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				font-size: 12px;
+				border: 1px solid #CCCCCC;
+			}
+			
+			#box div:last-child ul li:hover a {
+				width: 50px;
+				height: 20px;
+				display: block;
+				background: orange;
+				color: white;
+			}
+			
+			#box div:last-child ul li.bg {
+				color: orangered;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="fox">
+
+			<input type="text" id="txt" />
+			<div id="box">
+				<div>
+					<ul id="cont">
+
+					</ul>
+				</div>
+				<div>
+					<ul id="r-cont">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			let oTxt = document.getElementById("txt");
+			var oBox = document.getElementById("box");
+			var oCont = document.getElementById("cont");
+			var rCont = document.getElementById("r-cont")
+			//https://suggest.taobao.com/sug?code=utf-8&q=a&callback=jsonp305&area=c2c
+			oTxt.oninput = function() {
+				var val = oTxt.value;
+				if(val.length == 0 || val.length > 4 ) {
+					oBox.style.display = "none";
+				} else {
+					oBox.style.display = "block"
+				}
+				var oScript = document.createElement('script');
+				oScript.src = "https://suggest.taobao.com/sug?code=utf-8&q=" + oTxt.value + "&callback=data&area=c2c";
+				document.body.appendChild(oScript);
+			}
+
+			function data(data) {
+				data1 = data.result; // 左边数据  
+				var str1 = "";
+				for(let i = 0; i < data1.length; i++) {
+					str1 += `<li><a href="https://s.taobao.com/search?q=${data1[i][0]}">${data1[i][0]}</a></li>`
+				}
+				oCont.innerHTML = str1;
+
+				data2 = data.magic; //右边数据  
+				 
+				console.log(data2);
+				//console.log([] == "") true
+				//console.log(undefined == "")  false
+				let aLi = oCont.children;
+				if(data2 !== undefined) {
+						//console.log(data2);
+					for(let j = 0; j < data2.length; j++) {
+						oIndex = data2[j].index;
+						/*console.log(data3)*/
+						/*console.log(data3.length)*/
+						aLi[oIndex - 1].onmouseover = function() {
+							data3 = data2[j].data; // data2x下的数据s
+							//console.log(data3)
+
+							rCont.style.display = "block";
+							rCont.onmouseover = function() {
+								rCont.style.display = "block";
+							}
+
+							for(let i = 0; i < data3.length; i++) {
+								data4 = data3[i];
+								var str2 = "";
+								console.log(data4)
+								for(let k = 0; k < 　data4.length; k++) {
+									console.log(data4[k].type)
+									if(data4[k].type !== undefined) {
+										var _k = k;
+										//console.log(_k)
+									}
+									str2 += `<li><a href="https://s.taobao.com/search?q=${data4[k].title}">${data4[k].title}</a></li>`
+								}
+								rCont.innerHTML = str2;
+								//console.log(_k)
+								var oLi = rCont.children;
+								//console.log(oLi[_k].children[0])
+								oLi[_k].children[0].style.color = "orangered"
+							}
+						}
+						aLi[oIndex - 1].onmouseout = function() {
+							rCont.style.display = "none";
+						}
+						rCont.onmouseout = function() {
+							rCont.style.display = "none";
+						}
+					}
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

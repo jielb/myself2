@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>判断鼠标移入移出方向</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .outer {
+            width: 400px;
+            height: 400px;
+            border: 2px solid orange;
+            margin: 100px auto;
+            overflow: hidden;
+			position: relative;
+        }
+		.outer img{
+			width: 400px;
+			height: 400px;
+		}
+        .outer div {
+        	position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0.5;
+            display: none;
+            line-height: 400px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+	<img src="timg.jpg">
+    <div class="mask">如果有来生，有没有人爱，我也要努力做一个可爱的人。</div>
+</div>
+
+<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="direction.js" type="text/javascript" charset="utf-8"></script>
+<script src="dir.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".outer").dirMove()
+		
+		/*var disL = $(".outer").offset().left;
+		var disR = disL + $(".outer").outerWidth();
+		var disT = $(".outer").offset().top;
+		var disB = disT + $(".outer").outerHeight();
+		
+		$(".outer").hover(function(e){
+			var dirL = Math.abs(e.clientX-disL);
+			var dirR = Math.abs(e.clientX-disR);
+			var dirT = Math.abs(e.clientY-disT);
+			var dirB = Math.abs(e.clientY-disB);
+			
+			var dir = Math.min(dirL,dirR,dirT,dirB);
+			
+			switch(dir){
+				case dirL:
+					$(".mask").show().css({"left":"-400px","top":0}).stop().animate({"left":0},500);
+					break;
+				case dirR:
+					$(".mask").show().css({"left":"400px","top":0}).stop().animate({"left":0},500);
+					break;
+				case dirT:
+					$(".mask").show().css({"top":"-400px","left":0}).stop().animate({"top":0},500);
+					break;
+				case dirB:
+					$(".mask").show().css({"top":"400px","left":0}).stop().animate({"top":0},500);
+					break;
+			}
+			
+			
+		},function(e){
+			var dirL = Math.abs(e.clientX-disL);
+			var dirR = Math.abs(e.clientX-disR);
+			var dirT = Math.abs(e.clientY-disT);
+			var dirB = Math.abs(e.clientY-disB);
+			
+			var dir = Math.min(dirL,dirR,dirT,dirB);
+			
+			switch(dir){
+				case dirL:
+					$(".mask").stop().animate({"left":"-400px"},500);
+					break;
+				case dirR:
+					$(".mask").stop().animate({"left":"400px"},500);
+					break;
+				case dirT:
+					$(".mask").stop().animate({"top":"-400px"},500);
+					break;
+				case dirB:
+					$(".mask").stop().animate({"top":"400px"},500);
+					break;
+			}
+		})*/
+		
+	})
+	
+</script>
+</body>
+</html>

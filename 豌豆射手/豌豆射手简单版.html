@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>		
+		<script src="common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			
+			img{
+				position: absolute;
+				display: block; 
+			}
+			
+			div{
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background: #008000;
+				float: left;
+				position: absolute;
+			} 
+		</style>
+	</head>
+	<body>	
+		<img src="imgs/peas.gif"/>
+		<script type="text/javascript">
+			var oImg = document.getElementsByTagName("img")[0];
+			oImg.onmousedown = function(e) {
+				var evt = e || event;
+				var _x = evt.offsetX;
+				var _y = evt.offsetY;
+				var clone = oImg.cloneNode();
+				document.onmousemove = function(e) {					
+					var evt = e || event;
+					var x = evt.clientX - _x;
+					var y = evt.clientY - _y;
+				document.body.appendChild(clone);
+					clone.style.left = x + "px";
+					clone.style.top = y + "px";
+					return false;
+				} 
+			 
+				clone.onmouseup = function() {	 
+					document.onmousemove = null;
+					setInterval(function(){ 
+						var oDiv = document.createElement("div");
+						document.body.appendChild(oDiv);
+						
+						var x = clone.offsetLeft + clone.offsetWidth;
+						var y = clone.offsetTop + 5;
+						
+						oDiv.style.left = x + "px";
+						oDiv.style.top = y + "px";
+						
+						var left = clone.offsetLeft + clone.offsetWidth;
+						
+						var timer = setInterval(function(){
+							left++;
+							oDiv.style.left = left + "px";	
+							
+							if(oDiv.offsetLeft >= 1000){ 
+								document.body.removeChild(oDiv) 
+								clearInterval(timer)
+							}
+							
+						},1)
+						
+					},500)
+				}
+
+			}
+
+			 
+		</script>
+	</body>
+</html>

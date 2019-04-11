@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<style type="text/css">
+			body,ul,li{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			#box{
+				padding: 10px 50px;
+				width: 600px;
+				margin: 0 auto;
+				border: 1px solid #ccc;
+			}
+			#box div{
+				overflow: hidden;
+				width: 598px;
+				height: 500px;
+				border: 1px solid red; 
+				margin-top: 5px;
+			}
+			#box div img{
+				width: 598px;
+				height: 600px;
+			}
+			#list{
+				display: none;
+				width: 60px;
+				position: fixed;
+				top: 30%;
+				left: 10px;
+			}
+			#list ul{
+				width: 60px;
+			}
+			#list ul li{
+				cursor: pointer;
+				background: #8C8C8C;
+				color: white;
+				font-weight: 200;
+				width: 60px;
+				height: 20px;
+				font-size: 12px;
+				text-align: center;
+				line-height: 20px;
+				border: 1px solid #C1C1C1;
+				border-bottom: none;
+			}
+			#list ul li:hover,#list ul li.hover{
+				background: red;
+			}
+			#list ul li:last-child{
+				background: #C0C0C0; 
+				border-bottom: 1px solid #C1C1C1;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"> 
+			<div>1
+				<img src="imgs/bg.jpg" />
+			</div> 
+			<div>2
+				<img src="imgs/bg1.jpg" />
+			</div>
+			<div>3
+				<img src="imgs/bg2.jpg" />
+			</div>
+			<div>4
+				<img src="imgs/bg22.jpg" />
+			</div>
+			<div>5
+				<img src="imgs/bg3.jpg" />
+			</div>
+			<div>6
+				<img src="imgs/bg4.jpg" />
+			</div>
+			<div>7
+				<img src="imgs/text3.png" />
+			</div>
+			<div>8
+				<img src="imgs/text4.png" />
+			</div>
+		</div>
+		<div id="list">
+		 	<ul>
+		 		<li>1</li>
+		 		<li>2</li>
+		 		<li>3</li>
+		 		<li>4</li>
+		 		<li>5</li>
+		 		<li>6</li>
+		 		<li>7</li>
+		 		<li>8</li>
+		 		<li>回到顶部</li>
+		 	</ul>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				var pH = parseInt($("#box div:first").css("height")); 
+				pH = pH + 5;
+				var flag = true;
+				$(window).scroll(function(){
+					var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+					//让list出现 隐藏
+					if(scrollTop > 100){
+						$("#list").css("display","block")
+					} else {
+						$("#list").css("display","none") 
+					} 
+					//回到顶部
+					$("#list ul li:last").click(function(){ 
+						$("html,body").stop().animate({"scrollTop":0},1000)
+					}) 
+					
+					//让角标跟图片同步
+					if(flag){
+						$("#box div").each(function(){
+							if(scrollTop >= $(this).offset().top - $(this).outerHeight()/2 ){
+								$("#list ul").find("li").eq($(this).index()).addClass("hover").siblings().removeClass("hover")
+							}
+						})						
+					}
+				})
+				//点击角标 图片到对应位置
+				$("#list ul li").click(function(e){
+					flag = false;
+					$(this).addClass("hover").siblings().removeClass("hover"); 
+					$("html,body").stop().animate({"scrollTop":pH*$(this).index()},800,function(){
+						flag = true;
+					}) 
+				}) 
+			})
+		</script>
+	</body>
+</html>

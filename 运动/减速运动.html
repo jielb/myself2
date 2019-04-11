@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			#cur {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				background: red;
+				z-index: 10;
+			}
+			
+			#target {
+				position: absolute;
+				left: 700px;
+				top: 0;
+				width: 10px;
+				height: 300px;
+				background: #00FFFF;
+			}
+			
+			#btn {
+				position: absolute;
+				left: 20px;
+				top: 150px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="cur"></div>
+		<div id="target"></div>
+		<input type="button" id="btn" value="减速运动" />
+		<script type="text/javascript">
+			var oBox = document.querySelector(" #cur ")
+			var oLine = document.querySelector("#target ")
+			var oBtn = document.querySelector("#btn ")
+			console.log(oBox)
+			var timer = null;//解决bug
+			
+			oBtn.onclick = function(){
+				clearInterval(timer); // 每次点击时候，先清除定上次点击触发定时器，防止每点击依次出现一个定时器
+				
+				var target = oLine.offsetLeft;//目标值距离
+				
+				timer = setInterval(function(){
+					var cur = oBox.offsetLeft;//得到定时器上次触发以后 DOM对象的offetLeft距离
+					var speed = Math.ceil((target - cur)/8)		//把每次差值进行分割，使每次分割得到距离越来越小，达到减速目的	
+					            //Math.ceil（）目的使最后差距距离很小的时候，让其向上取整从而使DOM.style.left值大于目标值，进行判断条件
+		    
+					oBox.style.left = oBox.offsetLeft + speed + "px "; //相同时间内在上次DOM.offsetLeft上加count走相不同距离
+					if(oBox.offsetLeft >= oLine.offsetLeft){
+						oBox.style.left = oLine.offsetLeft + "px";  //让DOM对象达到目标值，停止移动，防止每点击一次该DOM对象移动一次
+						 
+						clearInterval(timer)
+					}
+					
+				},20)
+				 
+			} 
+
+			 
+			 
+			//获取DOM对象样式属性值   obj//DOM对象   attr//DOM样式属性名 ====>求得DOM对象对应的属性值(该值带有单位)
+			 function getStyle(obj,attr){
+			 	if(window.getComputedStyle){
+			 		return getComputedStyle(obj,null)[attr]
+			 	}
+			 	return obj.currentStyle[attrs]
+			 }
+		</script>
+	</body>
+
+</html>

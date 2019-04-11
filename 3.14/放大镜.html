@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				display: block;
+				border: none;
+			}
+			#zoomArea{
+				position: relative;
+				width: 400px;
+				border: 1px solid #CECECE;
+			}
+			#midArea{
+				width: 400px;
+				height: 400px;
+				overflow: hidden;
+				margin-bottom: 10px;
+			}
+			#midArea img{
+				width: 400px;
+				height: 400px;
+			}
+			#zoom{
+				display: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width:200px;
+				height: 200px;
+				background: yellow;
+				opacity: .5;
+				cursor: move;
+			}
+			#bigArea{
+				display: none;
+				position: absolute;
+				left: 400px;
+				top: -1px;
+				width: 400px;
+				height: 400px;
+				border: 1px solid #CECECE;
+				overflow: hidden;
+			}
+			#bigArea img{
+				position: absolute;
+				width: 800px;
+				height: 800px;
+			}
+			#zoomArea  #minArea{
+				overflow: auto;
+				width: 400px;
+				height: 80px;
+				float: left;
+			}
+			#zoomArea  #minArea img{
+				width: 80px;
+				height: 80px;
+				 float: left;
+				 margin-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="zoomArea">
+			<div id="midArea">
+				<img src="img/m01.jpg">
+				<div id="zoom">
+				</div>
+			</div>
+			<div id="minArea"></div>
+			<div id="bigArea">
+				<img src="img/m01.jpg">
+			</div>
+		</div>
+		<script type="text/javascript">
+			function Zoom(){
+				var data = [{imgsrc:"img/m01.jpg"},{imgsrc:"img/m02.jpg"},{imgsrc:"img/m03.jpg"},{imgsrc:"img/m04.jpg"},{imgsrc:"img/m05.jpg"},{imgsrc:"img/m06.jpg"},{imgsrc:"img/m07.jpg"}]
+				function $id(id){
+					return document.getElementById(id);
+					
+				}
+				this.zoomArea = $id("zoomArea");
+				this.midArea = $id("midArea");
+				this.zoom = $id("zoom");
+				 
+				this.bigArea = $id("bigArea");
+				 
+				this.minArea = $id("minArea")
+				
+				str = "";
+				for(let i = 0 ; i <data.length;i++){
+					str += `<img src="${data[i].imgsrc}"/>`
+				}
+			 
+				this.minArea.innerHTML = str;
+				
+				this.oImg = this.minArea.children;
+				console.log(this.oImg)
+				for(let i = 0 ; i < this.oImg.length;i++){
+					this.oImg[i].onlick = function(){
+						console.log("aa")
+						this.midImg = this.oImg[i];
+						this.bigImg = this.oImg[i];
+					}
+				}
+				this.midArea.onmouseover = ()=>{
+					this.zoom.style.display = "block";
+					this.bigArea.style.display = "block";
+				}
+				this.midArea.onmouseout = ()=>{
+					this.zoom.style.display = "none";
+					this.bigArea.style.display = "none";
+				}
+				this.midArea.onmousemove = (e)=>{
+					var evt = e || event;
+					/*var x = evt.offsetX - this.zoom.offsetWidth/2;
+					var y = evt.offsetY - this.zoom.offsetHeight/2;*/
+					var x = evt.pageX - this.zoomArea.offsetLeft - this.zoom.offsetWidth/2;
+					var y = evt.pageY - this.zoomArea.offsetTop - this.zoom.offsetHeight/2;
+					
+					var maxt = this.midArea.offsetHeight - this.zoom.offsetHeight;
+					var maxl = this.midArea.offsetWidth - this.zoom.offsetWidth;
+					
+					x = x <= 0? 0 : x>=maxl ? maxl:x;
+					y = y <= 0 ? 0 : y >= maxt ? maxt : y;
+					
+					
+					
+					
+					this.zoom.style.left = x + "px";
+					this.zoom.style.top = y + "px";
+					
+					
+					/*this.bigImg.style.left = - x/this.midArea.offsetWidth*this.bigImg.offsetWidth + "px";
+					this.bigImg.style.top = -y/this.midArea.offsetHeight*this.bigImg.offsetHeight + "px";*/
+				}
+				
+				
+			}
+			
+			new Zoom();
+		</script>
+	</body>
+</html>

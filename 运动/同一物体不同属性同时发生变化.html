@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			#box {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box"></div>
+		 
+		<script type="text/javascript">
+			let oBox = document.getElementById("box");
+			var timer = null;
+			oBox.onmouseenter = function() {
+				clearInterval(timer);
+				var target1 = 300;
+				var target2 = 500;
+				timer = setInterval(function() {
+					
+					var cur1 = parseInt(getStyle(oBox, "width"));
+					var cur2 = parseInt(getStyle(oBox, "height"));
+
+					var speed1 = Math.ceil((target1 - cur1) / 6);
+					var speed2 = Math.ceil((target2 - cur2) / 6);
+
+					oBox.style.width = parseInt(getStyle(oBox, "width")) + speed1 + "px";
+					oBox.style.height = parseInt(getStyle(oBox, "height")) + speed2 + "px";
+
+					if(speed1 == 0 && speed2 == 0) {
+						clearInterval(timer)
+					}
+					
+				},20)
+
+			}
+			
+			oBox.onmouseleave = function() {
+				clearInterval(timer);
+				var target1 = 100;
+				var target2 = 100;
+				
+				timer = setInterval(function() {
+					 
+					var cur1 = parseInt(getStyle(oBox, "width"));
+					var cur2 = parseInt(getStyle(oBox, "height"));
+
+					var speed1 = Math.floor((target1 - cur1) / 6);
+					var speed2 = Math.floor((target2 - cur2) / 6);
+
+					oBox.style.width = parseInt(getStyle(oBox, "width")) + speed1 + "px";
+					oBox.style.height = parseInt(getStyle(oBox, "height")) + speed2 + "px";
+					 
+					 if(speed1 == 0 && speed2 == 0){
+					 	clearInterval(timer)
+					 	 
+					 }
+				 
+				},20)
+
+			}
+			
+			
+			
+			function getStyle(obj, attr) {
+				if(window.getComputedStyle) {
+					return getComputedStyle(obj, null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}
+		</script>
+	</body>
+
+</html>

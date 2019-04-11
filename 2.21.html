@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//编写任意个数字的求和、差、积、商的函数
+			/*function  exec(){
+				var he = arguments[0];
+				var ji = arguments[0];
+				var cha = arguments[0];
+				var chu = arguments[0];
+				for(var i=1;i <arguments.length;i++){
+					he += arguments[i];
+					ji *= arguments[i];
+					cha -= arguments[i];
+					chu /= arguments[i];
+				}
+				document.write("和："+he+"<br/>","积："+ji+"<br/>","差："+cha+"<br/>","商："+chu+"<br/>")
+			}
+			exec(12,2,3)*/
+
+			// 编写生成4位数字验证码的函数，并生成10次
+		/*	function foo() {
+				for(var j = 0; j < 10; j++) {
+					for(var i = 0; i < 4; i++) {
+						var a = parseInt(Math.random() * 10);
+						document.write(a + "&nbsp;")
+					}
+					document.write("<br>")
+				}
+
+			}
+			foo();*/
+
+			/*编写一个函数，计算任意两个数字之间所能组成的奇数个数，数字必须是个位数
+               比如： 计算0-3之间能组成的奇数个是01、21、03、13、23、31
+*/
+			/*function foo(m,n){
+				for(var i = m;i<=n;i++){
+					for(var j = m;j<=n;j++){
+						if(i !=j && i%2 != 0 ){
+							document.write(i,j+"<br/>")
+						}
+					}
+				}
+			}
+			
+			foo(0,3)*/
+
+
+			/*
+			            某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，加密规则如下：每位数字都加上5,然后用除以10的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换，请编写一个函数，传入原文，输出密文*/
+			       /*  function foo(a,b,c,d){
+			         	var m = (a+5)%10
+			         	var n = (b+5)%10
+			         	var x = (c+5)%10
+			         	var y = (d+5)%10
+			         	var l = m;
+			         	m = y;
+			         	y = l;
+			         	var i = n;
+			         	n = x;
+			         	x = i;
+			         	document.write(m,n,x,y)
+			         }
+			         foo(5,8,1,4)
+			           */
+			           
+			           
+			           
+		</script>
+	</body>
+
+</html>

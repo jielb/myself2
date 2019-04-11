@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,p{
+				padding: 0;
+				margin: 0;
+			}
+			ul{
+				position: absolute;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<p>重命名</p>
+		<ul>
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+		</ul>
+		<script type="text/javascript">
+			var oP = document.getElementsByTagName("p")[0];
+			var oUl = document.getElementsByTagName("ul")[0];
+			var aLi = oUl.children; 
+			//console.log(aLi);
+			for(var i = 0 ; i < aLi.length ; i++){
+				aLi[i].onclick = function(){ 
+					var oInput = document.createElement("input");
+					oInput.value = oP.innerText; 
+					document.body.replaceChild(oInput,oP)
+					oUl.style.display = "none";
+					oInput.onchange = function(){
+					var oP = document.createElement("p");
+						oP.innerHTML = oInput.value;
+						console.log(oInput.value)
+						document.body.replaceChild(oP,oInput,);
+					}
+				}
+				
+			}
+			
+			document.oncontextmenu = function(e){
+				var evt = e || event;
+				var left = evt.clientX;
+				var top = evt.clientY;
+				
+				oUl.style.left = left + "px";
+				oUl.style.top = top + "px";
+				oUl.style.display = "block";
+				
+				evt.returnValue = false;
+				
+			}
+			
+		</script>
+	</body>
+</html>

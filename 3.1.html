@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 200px;
+				height: 200px;
+				border: 3px solid #CECECE;
+				background: #00FFFF;
+				margin: 50px auto;
+			}
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		<div id="box" class="fox" name="ccc"></div>
+		<script type="text/javascript">
+			var oBox = document.getElementById("box");
+			var fos = document.createElement("div")
+			document.body.appendChild(fos)
+		/*	console.log(oBox.attributes)
+			console.log(oBox.setAttribute("id","fox"))
+			console.log(oBox.getAttribute("id"))
+			console.log(oBox.removeAttribute("id"))
+			*/
+			
+			/*console.log(oBox.style.width) // 只能获取行内元素值
+			console.log(oBox.style.width)*/
+			
+			
+			/*oBox.id = "fox"*/
+		/*	oBox.className = "box"*/
+		
+		
+		
+		
+		console.log(oBox.innerHTML);
+		console.log(oBox.outerHTML)
+			//oBox.innerHTML = "bb";
+			//oBox.innerHTML = "<h1>biaoti1</h1>";
+			//console.log(oBox.innerText);
+			//oBox.innerText = "bb";
+			//oBox.innerText = "<h1>biaoti1</h1>";
+			
+			
+			
+		</script>
+	</body>
+</html>

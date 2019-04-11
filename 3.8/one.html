@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="startMove.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				position: relative;
+				width:500px;
+				height: 400px;
+				left: -500px;
+				float: left;
+			}
+			#box div:first-child{
+				width: 498px;
+				height: 388px;
+				border: 1px solid #CECECE; 
+				float: left;
+			}
+			#box #move{
+				position: absolute;
+				left: 500px;
+				top: 90px;
+				width: 60px;
+				height: 180px;
+				background: red; 
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="slib"></div>
+			<div id="move"></div>
+		</div>
+		<script type="text/javascript">
+			let oBox = document.getElementById("box");
+			let oMove = document.getElementById("move")
+			let slib = document.getElementById("slib")
+			oMove.onmouseover = () => {
+				startMove(oBox,{left:0})
+				oBox.onmouseover = () => {
+					startMove(oBox,{left:0},8)
+				} 
+			}
+			oBox.onmouseout = () => { 
+				startMove(oBox,{left:-500},8) 
+			}
+			 	
+		</script>
+	</body>
+</html>

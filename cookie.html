@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="common.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//增加cookie
+			//document.cookie = "productId = 1001";
+			//document.cookie = "username = myself";
+
+			//setCookie("uc1","one",-7);
+			//console.log(getCookie("productId"));
+			//	removeCookie("productId");
+			//getCookie(username);
+			//removeCookie(productId);
+
+			//查看cookie
+			//console.log(document.cookie)
+
+			//修改cookie
+			//document.cookie = "username = youself"
+
+			//设定n天后    删除cookie
+			/*var odate = new Date();
+			odate.setDate(odate.getDate() + 1);
+			
+			document.cookie = "age = 20; exprires=" + odate;*/
+
+			//删除cookie  直接让时间过期
+			/*var odate = new Date();
+			odate.setDate(odate.getDate() + 1);
+			
+			document.cookie = "age = 30; exprires=" + odate;*/
+
+			//cookie封装
+
+			//let
+			//1.存在块级作用域
+			// let声明变量的区域是局部变量
+
+			/*for(var a = 0;a < 5;a++){
+				//console.log(a)
+				// a = 10;
+				for(var i = 0 ; i<10;i++){
+					console.log(a)
+					//console.log(i)
+				}
+				//console.log(a)
+			}*/
+			//console.log(a)
+
+			/*function foo(n){
+				var a = 1;
+				var a = 2;
+				console.log(a)
+			}
+			foo();
+			*/
+			/*let a = 10;
+			if(true){
+				console.log(a); //a is not defined  // 不存在声明提升，暂时性死区
+				let a = 20;   
+			}*/
+
+			/*var a = 10;
+
+			function foo(a) {
+				a = 20;
+			}
+			foo();
+			console.log(a) // 10*/
+
+			let {a,b=5} = {c:6,a:1}
+			console.log(a)
+		</script>
+	</body>
+
+</html>

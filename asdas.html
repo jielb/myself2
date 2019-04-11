@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>    <li>苦心人</li>    <li>天不负</li>    <li>卧薪尝胆</li>    <li>三千越甲可吞吴</li> </ul>
+
+		<script type="text/javascript">
+			
+		 
+var oUl = document.getElementsByTagName("ul")[0];
+var aLi = oUl.children;
+oUl.onclick = function(e){
+var evt = e || event;
+var _target = evt.target || evt.srcElement;
+	
+if(_target.nodeName.toLowerCase() == "li"){
+    for(let i = 0 ; i < aLi.length; i++){
+      var val = this.innerText;
+       alert(val + i)
+}
+}
+
+
+
+}
+
+
+
+
+
+ 
+		</script>
+	</body>
+</html>

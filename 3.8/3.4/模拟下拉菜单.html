@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				left: 500px;
+				top: 50px;
+				position: relative;
+				width: 300px;
+				height: 40px; 
+			}
+			#cont{
+				width: 300px;
+				height: 40px;
+				display: block;
+				font-size: 14px;
+				line-height: 40px;
+				border: 1px solid #CECECE;
+				outline: none;
+			}
+			#box1{
+				position: absolute;
+				bottom: -162px;
+				left: 0;
+				width: 300px;
+				height: 150px; 
+				border: 1px solid #00BFFF;
+				display: none;
+			}
+			#box1 div{
+				width: 300px;
+				height: 50px;
+				float: left;
+				border-bottom: 1px solid #CECECE;
+				font-size: 14px;
+				line-height: 50px;
+			}
+			#box1 div:last-child{
+				border: none;
+			}
+			#box1 div:hover{
+				background: #CECECE;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text" id="cont" />
+			<div id="box1">
+				<div>你猜</div>
+				<div>我</div>
+				<div>猜不猜</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		   var oCont = document.getElementById("cont");
+		   var oBox = document.getElementById("box1")
+		   var oBoxc = oBox.children;
+		   oCont.onfocus = function(){
+		   		oBox.style.display = "block";
+		   		for(let i = 0 ; i < oBoxc.length ; i++){
+		   			oBoxc[i].onclick = function(){
+		   				var val = oBoxc[i].innerText;
+		   				oCont.value = val;
+		   				oBox.style.display = "none";
+		   			}
+		   		}
+		   }
+		   
+		   
+		   
+		</script>
+	</body>
+</html>

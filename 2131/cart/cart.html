@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="cart.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//网站里的列表数据从哪儿来？<- 后台提供  <- (抓取 ,数据库）
+			//前端展示数据？数据格式有一定的结构，通常会有两种形式 一种JSON  一种XML
+			//如何展示？字符串拼接或者模板字符串
+			
+			//加入购物车  商品数据会通过后台（后台接口）保存到数据库  或者存本地
+			var data = [{
+				id:10001,
+				imgUrl:"1.jpg",
+				title:"T恤T恤T恤T恤",
+				price:100
+			},{
+				id:10002,
+				imgUrl:"2.jpg",
+				title:"T恤T恤T恤T恤",
+				price:99
+			},{
+				id:10003,
+				imgUrl:"1.jpg",
+				title:"T恤T恤T恤T恤",
+				price:98
+			}]
+			
+			//就是对这些数据的处理展示  todo
+			
+			
+			
+			
+			
+			
+			
+			//本地存储 localStorage
+			
+			//localStorage.setItem("a",1);
+			//localStorage.setItem("b",1);
+			/*console.log(localStorage.getItem("a"));
+			localStorage.removeItem("a");*/
+			//localStorage.clear();
+			
+			//console.log(localStorage.length);
+			
+			//console.log(localStorage.key(0));
+			
+			//存到localStorage里的数据 id:num  id:num  {"10001":2,"10002":5}
+			
+			//将json对象转换json字符串
+			var obj = {"10001":2,"10002":5};
+			var str = JSON.stringify(obj);
+			//将json字符串转换成json对象
+			var obj1 = JSON.parse(str);
+			console.log(obj1);
+			
+			
+			localStorage.setItem("cart",str);//存取时都是字符串格式
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

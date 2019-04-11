@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script type="text/javascript">
+			//选择排序  
+			/*var arr = [1,9,3,5,4,7,6]
+							//假设第一个数为最小值，设一个minIndex为第一个最小值的索引 ，让假设的最小值与后边的数值一次比较，有比它小的改变minIndex
+							//假设第二个数为最小值，以此类推
+							function foo(arr) {
+								for(var i = 0; i < arr.length - 1; i++) {
+									var minIndex = i;
+									for(var j = i + 1; j < arr.length; j++) {
+										if(arr[j] < arr[minIndex]) {
+											minIndex = j;
+										}
+									}
+									var temp = arr[i];
+									arr[i] = arr[minIndex];
+									arr[minIndex] = temp
+								}
+								return arr;
+							}
+												
+							console.log(foo(arr))
+*/
+			/*//冒泡排序 
+			var arr = [1, 9, 3, 5, 4, 7, 6]
+			//数组中的值两两比较，如果第一个值比第二个值大，交换位置，这样一次比较，把最大值排在后边
+			//进行第二轮比较，得到第二个最大值(进行第二轮时候，得到最小值将不带入进行计算)
+			//以此类推
+			function foo(arr) {
+				for(var i = 1; i <= arr.length - 1; i++) {
+					for(var j = 0; j <= arr.length - 1 - i; j++) {
+						if(arr[j] > arr[j + 1]) {
+							var temp = arr[j];
+							arr[j] = arr[j + 1]
+							arr[j + 1] = temp
+						}
+					}
+				}
+				return arr;
+			}
+			console.log(foo(arr));*/
+
+			//arr.sort()排序
+			/*var arr = [1, 9, 3, 5, 4, 7, 6]
+			var a = arr.sort(function(a,b){
+			    return a-b;
+			 })
+			console.log(a)
+			*/
+			//数组去重
+
+			/*	arr = [1,1,1,2,2,1,3,3,1,2]
+				
+				/*1.for循环去重
+				
+				function foo(arr){
+					for(var i = 0; i<arr.length-1; i++){
+						for(var j = i+1;j<arr.length;j++){
+							if(arr[i]==arr[j]){
+								arr.splice(j,1);
+								j--
+							}
+						}
+					}
+					return arr;
+				}
+				console.log(foo(arr))*/
+
+			// 2.对象去重
+			/*function foo(arr){
+				var obj = {};
+				var newArr = [];
+				for(var i = 0 ; i < arr.length; i++){
+					if(obj[arr[i]]==undefined){
+						obj[arr[i]]=1;
+						newArr.push(arr[i])
+					}
+				}
+				return newArr;
+			}
+			console.log(foo(arr))*/
+
+			//3.先排序在去重
+			/*var arr = [1,1,1,2,2,1,1,3,2,2]*/
+
+			//倒计时
+			/*	var preday = new Date("2019/2/23 10:47")
+					var timer = setInterval(function(){
+						function miaosha(){
+							var nowdate = new Date()
+							var ss = preday - nowdate
+							ss = ss/1000
+							var day = Math.floor(ss/3600/24)
+							var hours = Math.floor(ss/3600)
+							var minute = Math.floor(ss/60%60)
+							var seconds = Math.floor(ss%60)
+							if(day<10){
+								day = "0" + day
+							}
+							if(hours<10){
+								hours = "0" + hours
+							}
+							if(minute<10){
+								minute = "0" + minute
+							}
+							if(seconds<10){
+								seconds = "0" + seconds
+							}
+							box.innerHTML = "秒杀剩余时间：" + day + "天" + hours + "时" + minute + "分" + seconds + "秒" 
+							if(ss<=0){
+								clearInterval(timer)
+								box.innerHTML = "秒杀结束"
+							}
+						}
+					 	miaosha();
+					},1000)  */
+
+		 /*console.log(document.documentElement.clientHeight)*/
+		 window.onresize = function(){
+				console.log("aa");
+			}
+		</script>
+	</body>
+
+</html>

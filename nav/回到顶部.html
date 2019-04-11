@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				height: 2000px;
+			}
+			#btn{
+				position: fixed;
+				display: none;
+				right: 10px;
+				bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" id="btn" value="回到顶部"/>
+		<script type="text/javascript">
+			$(function(){
+				$(window).scroll(function(){
+					var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+					console.log(scrollTop)
+					if(scrollTop > 300){
+						$("#btn").css({"display":"block"})
+					} else{
+						$("#btn").css({"display":"none"})
+						
+					}
+					$("#btn").click(function(){ 
+						$("html,body").stop().animate({"scrollTop":"0px"},1000)
+					})
+				})
+				 
+				
+				
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>

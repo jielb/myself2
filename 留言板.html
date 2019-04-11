@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,
+			p {
+				padding: 0;
+				margin: 0;
+			}
+			
+			#box {
+				width: 400px;
+				height: 100%;
+				margin: 50px 0 0 300px;
+			}
+			
+			#box #txt {
+				width: 300px;
+				height: 80px;
+			}
+			
+			#box #cont div {
+				width: 200px;
+				margin: 5px;
+				border: 1px solid #CECECE;
+			}
+			
+			#box #cont div span {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<textarea id="txt"></textarea>
+			<input type="button" id="btn" value="发送" />
+			<div id="cont">
+
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var oTxt = document.getElementById("txt");
+			var oBtn = document.getElementById("btn");
+			var oBox = document.getElementById("box");
+			var oCont = document.getElementById("cont");
+			oBtn.onclick = function() {
+				cont();  
+			}
+
+			oTxt.onkeydown = function(e) {
+				var evt = e || event;
+				var code = evt.keyCode || evt.which;
+				if(evt.ctrlKey && code == 13) {
+					cont();
+				} 
+			}
+
+			function cont() {
+				var oDiv = document.createElement("div");
+				var date = new Date();
+				var year = date.getFullYear();
+				var mounth = date.getMonth() + 1;
+				var day = date.getDate();
+				var hour = date.getHours()
+				var minute = date.getMinutes();
+				var str = "" + year + "-" + mounth + "-" + day + "  " + hour + ":" + minute
+				oDiv.innerHTML = "<p>" + oTxt.value + "</p>" + "<p>" + str + "</p>" + "<span>删除</span>";
+				oCont.appendChild(oDiv)
+				oTxt.value = ""
+				
+				var oDiv = oCont.children[0];
+				var aSpan = document.getElementsByTagName("span");
+				//console.log(aSpan.length)
+				for(let i = 0; i < aSpan.length; i++) {
+					aSpan[i].onclick = function() {
+						//console.log(i)
+						oCont.removeChild(this.parentNode)
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

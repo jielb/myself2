@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#miaobiao {
+				width: 300px;
+				height: 40px;
+				font-size: 25px;
+				font-weight: 800;
+				text-align: center;
+				line-height: 40px;
+				margin: 200px auto;
+				border: 1px solid #cecece;
+				color: red;
+			}
+			
+			#btn,
+			#stop,
+			#reset,
+			#chongzhi {
+				outline: none;
+				margin: 10px;
+				float: left;
+			}
+			
+			#btn {
+				margin-left: 600px;
+			}
+			
+			#stop,
+			#reset,
+			#chongzhi {
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="miaobiao">00:00:00</div>
+		<input type="button" value="重新计时" id="btn" />
+		<input type="button" value="暂停" id="stop" />
+		<input type="button" value="继续" id="reset" />
+		<script type="text/javascript">
+			window.onload = function() {
+				var oMb = document.getElementById("miaobiao");
+				var oBtn = document.getElementById("btn");
+				var oStop = document.getElementById("stop");
+				var oReset = document.getElementById("reset");
+
+				var timer = null;
+				var count = 0;
+
+				oBtn.onclick = function() {
+					clearInterval(timer)
+					oMb.innerHTML = "00" + ":" + "00" + ":" + "00"
+					count = 0;
+					move();
+				}
+
+				function move() {
+
+					timer = setInterval(function() {
+						count++;
+						var hours = Math.floor(count / 3600);
+						var minute = Math.floor(count / 60 % 60);
+						var seconds = Math.floor(count % 60)
+
+						if(hours < 10) {
+							hours = "0" + hours
+						}
+						if(minute < 10) {
+							minute = "0" + minute
+						}
+						if(seconds < 10) {
+							seconds = "0" + seconds
+						}
+						oMb.innerHTML = hours + ":" + minute + ":" + seconds;
+
+					}, 1)
+				}
+
+				oStop.onclick = function() {
+					clearInterval(timer)
+				};
+
+				oReset.onclick = function() {
+					move();
+				}
+
+			}
+		</script>
+	</body>
+
+</html>

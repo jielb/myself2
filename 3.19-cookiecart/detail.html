@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="cart.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li{
+				padding: 0;
+				margin: 0;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			li{
+				list-style: none;
+			}
+			img{
+				width: 400px;
+				height: 300px;
+				float: left;
+			}
+			div{
+				float: left;
+				width: 300px;
+				height: 100px;
+				display: block;
+				margin-top: 100px;
+			}
+			div span{
+			 	width: 300px;
+			 	height: 30px;
+			 	display: block;
+			 	margin: 10px 5px;
+			 	padding-left: 10px;
+			}
+			div span:nth-of-type(2){
+				padding-left: 15px;
+			}
+			input{
+				margin-left: 100px;
+			}
+			 
+		</style>
+	</head>
+	<body>
+		<ul id="detail"></ul>
+		<script type="text/javascript">
+			let oDetail = document.getElementById("detail");
+			let str = location.search .split("=")[1]; 
+			console.log(str)
+			
+			for(let i = 0; i < data.length;i++){
+				if(data[i].id == str){
+					oDetail.innerHTML = `<li>
+											<img src="${data[i].imgSrc}"/>
+											<div>
+											<span>${data[i].title}</span>
+											<span>${data[i].price}</span>
+											<input type="button" class="btn" data-id="${data[i].id}" value="加入购物车"/>
+											</div>
+										</li>`
+				}
+			}
+			
+			let oBtn = document.getElementsByClassName("btn")[0];
+			var cart = new Cart();
+			oBtn.onclick = function () {
+				var id = this.getAttribute("data-id")
+				cart.addcart(id,1)
+				location.href = "cart.html";
+			}
+		</script>
+		
+	</body>
+</html>

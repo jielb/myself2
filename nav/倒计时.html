@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div></div>
+		<script type="text/javascript">
+			$(function(){
+				function daojishi(){
+					var oDate = new Date();
+					var oData1 = new Date("2019/3/30 12:00:00");
+					var ss = Math.abs(oData1 - oDate)/1000
+					var day = Math.floor(ss/60/60/24)
+					var hour = Math.floor(ss/60/60%24)
+					var minute = Math.floor(ss/60%60)
+					var seconds = Math.floor(ss%60)
+					var str = "剩余：" + day + "天" + hour + "时" + minute + "分" + seconds +"秒";
+					$("div").html(str)
+				} 
+				daojishi();
+				setInterval(daojishi,1000) 
+				
+			})
+		</script>
+	</body>
+</html>

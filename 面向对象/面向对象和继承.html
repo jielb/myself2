@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*//注：对象没有原型对象（prototype）
+			
+			//对象创建方法 ：1.字面量 2.构造函数 3. 工厂函数 4.原型对象 5构造函数和原型对象组合创建
+			// 1. 字面量     var obj = {}
+			// 2. 构造函数  var obj = new Object() //新创建 //浏览器的内置函数 //缺点：每生成的一个构造对象都不相同
+			// 3. 工厂函数   缺点：不同对象使用同一种方法时候，要生成不同实例，会造成代码冗余，增加内存开销（无法判断一个具体类型）
+			// 4. 原型对象   缺点 ：原型对象上的的属性不能被改变
+			// 5.原型对象和构造函数组合创建  解决工厂函数和原型对象的缺点
+			
+			
+			//普通函数和new一起使用的步骤
+			 //1.创建一个新对象
+			 //2.改变this指向，指向新对象
+			 //2.执行构造函数里的代码
+			 //4.返回这个新对象
+			//每一个函数都有一个原型对象(prototype),每一个原型对象都有一个指向构造函数指针
+			//每一个实例都有一个__proto__指针，指向原型对象
+			//原型对象的属性和方法能被实例所访问*/
+			/*//测试 prototype，__proto__
+			function Foo(){
+				
+			};
+			console.log(Foo.prototype); 
+			var foo = new Foo();
+			console.log(foo.__proto__)
+			console.log(foo.__proto__.__proto__)*/
+			
+			/*//工厂函数
+			    function Foo(name,age){
+			    	this.name = name;
+			   		this.age = age;
+			   		this.sayHello = function(){
+			   			console.log(this.name)
+			   		}
+			    }
+				var foo = new Foo("join","20");
+				var brr = new Foo();
+				console.log(foo.sayHello == brr.sayHello)
+				console.log(foo.name)*/
+			
+			/*//原型对象
+			function Foo(name,age){
+				
+			}
+			Foo.prototype.sayHello = function(){
+				console.log("aa")
+			}
+			var foo = new Foo();
+			var brr = new Foo();
+			console.log(foo.sayHello === brr.sayHello)*/
+			
+			//继承
+			/*//call,apply继承 //只能继承构造函数的属性和方法 不能继承原型对象上的属性和方法
+			function Person(name,age){
+				this.name = "join";
+				this.age = age;
+			}
+			Person.prototype.sayHello = function(){
+				console.log(this.name)
+			}
+			function Male(){
+				Person.call(this,"join","20")
+			}
+			function FaMale(){
+				Person.call(this,"join1","21")
+			}
+			
+			//var female = new FaMale();
+			console.log(male.name)
+			console.log(female.name)
+			console.log(male.sayHello == female.sayhello)
+			*/
+			
+			
+		/*	//原型链继承  //在原型链的属性和方法都能被底层的实例所访问 
+			function Person(name,age){
+				this.name = "join";
+				this.age = age;
+			} 
+			}
+			function Male(){ 
+			}
+			Male.prototype = new Person();
+			var male = new Male()
+			console.log(Male.prototype.__proto__ == Person.prototype)
+			console.log(Male.prototype == male.__proto__)
+			console.log(male.__proto__.__proto__ == Person.prototype)
+			console.log(male.name)*/
+		
+			/*//组合继承  //原型链继承和call，apply继承
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			Person.prototype.foo = function(){
+				console.log(this.name)
+			}
+			//继承父类实例属性
+			function Male(){
+				Person.call(this,"join","20")
+			}
+			//继承父类原型方法
+			for(var i in Person.prototype){
+				Male.prototype[i] = Person.prototype[i]
+			}
+			var male = new Male();
+			console.log(male.foo())*/
+		
+			//寄生式继承 Object.create()
+			
+				function Person(name){
+					this.name = name;
+				}
+			
+				//继承父类实例属性
+				function Male(){ 
+					Person.call(this,name)
+				}
+				
+				Male.prototype = Object.create(Person.prototype);
+				Male.prototype.constructor = Male;
+							
+				//Person("join");
+			   // var male = new Male();
+				//console.log(Male.prototype.__proto__ == Person.prototype);//true
+				//console.log(male.name)
+				//console.log(male.__proto__.constructor); //指向Person
+			/*	
+				console.log(male.__proto__ == Male.prototype)//true
+				console.log(male.name) //*/
+				
+				/*//封装一个继承
+				function inherit(superType,subType){
+					subType.prototype = Object.create(superType);
+					subTypeprototype.constructor = subType; 
+				}
+				*/
+				
+				//es6 继承  class extends
+				
+			   
+				
+		</script>
+		
+		
+	</body>
+</html>

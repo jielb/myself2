@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	<body>
+		<script type="text/javascript">
+			/*// set运算属性
+						var arr = [1,1,1,2,2,3,1,2];
+						var arr = new Set(arr);
+						console.log(arr)*/
+			/*//对象去重 
+			var arr = [1,1,1,1,2,2,3,1,1]
+			function objRemoval(arr){
+				var obj = {};
+				var newArr = [];
+				for(var i = 0; i < arr.length; i++){
+					if(obj[arr[i]] == undefined){
+						obj[arr[i]] = 1;
+						newArr.push(arr[i]);
+					}
+				}
+				return newArr;
+			}
+			console.log(objRemoval(arr))*/
+			//for + for
+			/*var arr = [1, 1, 1, 1, 5, 3, 3, 3, 2]
+			function twoFor(arr) {
+				for(var i = 1; i < arr.length; i++) {
+					console.log(arr.length)
+					for(var j = 0; j < arr.length - 1; j++){
+						if(arr[j] == arr[j + 1]){
+							arr.splice(arr[j + 1], 1);
+						}
+					}
+				}
+				return arr;
+			}
+
+			console.log(twoFor(arr))*/
+		</script>
+	</body>
+
+</html>

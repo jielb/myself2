@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position:absolute;
+				top: 0;
+				left: 700px;
+			}
+			#line{
+				position: absolute;
+				width: 1px;
+				height: 300px;
+				background: #00FFFF;
+				top: 0;
+				left: 0;
+			}
+			#btn{
+				margin-top:150px ;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="line"></div>
+		<input type="button"  id="btn" value="test" />
+		<script type="text/javascript">
+			let oBox = document.querySelector("#box");
+			let oLine = document.querySelector("#line");
+			let oBtn = document.querySelector("#btn")
+			
+			var timer= null; 
+			oBtn.onclick = () =>{ 
+				clearInterval(timer)
+				
+				
+				var _target = oLine.offsetLeft;
+				timer = setInterval(()=>{ 
+					
+					var _cur = oBox.offsetLeft;
+					var speed = Math.floor((_target - _cur)/7);
+					
+					oBox.style.left = oBox.offsetLeft + speed + "px";
+					
+					if(_target == _cur){
+						clearInterval(timer)
+					}
+					
+				},20)	
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

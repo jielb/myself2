@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			#lb{
+				margin: 20px auto;
+				width: 120px;
+				height: 200px;
+				border: 1px solid red;
+				position: relative;
+				overflow: hidden;
+			}
+			#lb #lb1{
+				position: absolute;
+				width: 120px;
+				height: 600px;
+			}
+			#lb #lb1 ul{
+				width: 120px;
+				height: 200px; 
+				background: #C1C1C1;
+				overflow: hidden;
+			} 
+			#lb #lb1 ul li {
+				width: 100px;
+				height: 30px;
+				margin: 10px 0 10px 5px;
+				border: 1px solid #CECECE;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="lb">
+			<div id="lb1">
+				<ul>
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+				</ul>
+				<ul>
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul> 
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				var len = $("ul").length; 
+				var perHeight = $("ul").height(); 
+				var i = 0;
+				var timer = setInterval(move,2000)
+				function move(){ 
+					i++;
+					if(i == len){
+						$("#lb1").animate({"top":0},0)
+						i = 1;
+					}
+					$("#lb1").animate({"top":-perHeight*i+"px"},2000)
+				}
+				
+				$("#lb1").mouseover(function(){
+					console.log("aa")
+					clearInterval(timer) 
+				}).mouseout(function(){
+					timer = setInterval(move,2000) 
+				})
+			 
+				
+				
+				/*$("#lb").mouseover(function(){
+					clearInterval(timer);
+					$(this).stop();
+				})*/
+			})
+		</script>
+	</body>
+</html>

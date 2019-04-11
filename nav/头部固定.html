@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+				height: 2000px;
+			}
+			div{
+				position: fixed;
+				top: 0;
+				left: 0;
+				width:100% ;
+				height: 50px;
+				background: red;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div> </div>
+		<script type="text/javascript">
+			$(function(){
+				$(window).scroll(function(){
+					var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+					if(scrollTop > 700){
+						$("div").css({"display":"block"})	
+					}else{
+						$("div").css({"display":"none"})	
+						
+					}
+				})
+			})
+		</script>
+		
+	</body>
+</html>

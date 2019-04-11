@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 202px;
+				height: 30px;
+				margin: 150px auto; 
+			}
+			#mingzinanqi{
+				width: 200px;
+				height: 5px;
+				border: 1px solid #C1C1C1;
+				border-radius: 3px;
+				margin-top: 12px;
+			}
+			#mingzinanqi #bg{
+				height: 5px;
+				background: red;
+				border-radius: 3px;
+			}
+			#num{
+				width: 100px;
+				border: 1px solid #00BFFF;
+				position: fixed;
+				left: 20px;
+				top: 60px;
+				height: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<div id="mingzinanqi">
+				<div id="bg"></div>
+			</div>
+		</div>
+		<div id="num"></div>
+		<script type="text/javascript">
+			$(function(){
+				var num = 1000;
+				var perWidth = parseInt($("#mingzinanqi").css("width")); 
+				var iSpeed = perWidth/num;
+				var a = num;
+				setInterval(function(){
+					--num;
+					$("#bg").stop().animate({"width":(a - num)*iSpeed+"px"},1);
+					$("#num").html(parseFloat(((a - num)*iSpeed/2).toFixed(2)) +"%")
+					console.log(a - num)
+					if(a - num >= a){
+						$("#bg").stop().animate({"width":'$("#mingzinanqi").css("width")'},0);
+						$("#num").html("100%");
+					}
+				},1)
+			}) 
+		</script>
+	</body>
+</html>

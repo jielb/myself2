@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<style type="text/css">
+			body,
+			p {
+				padding: 0;
+				margin: 0;
+			}
+			
+			#cont {
+				width: 300px;
+				height: 300px;
+				margin: 50px auto;
+			}
+			
+			#cont div {
+				width: 270px;
+				float: left;
+			}
+			
+			#cont div input {
+				width: 200px;
+				height: 25px;
+				float: left;
+				outline: none;
+			}
+			
+			#cont span {
+				border: 1px solid #C1C1C1;
+				background: #CCCCCC;
+				width: 60px;
+				height: 29px;
+				display: block;
+				float: left;
+				text-align: center;
+				line-height: 30px;
+				font-size: 13px;
+			}
+			
+			#cont div p {
+				float: left;
+				width: 270px;
+				height: 16px;
+				font-size: 4px;
+				line-height: 16px;
+				margin: 0;
+				color: red;
+			}
+			#cont div #cont2{
+				color: deepskyblue;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div id="cont">
+			<div>
+				<span>用户名：</span><input type="text" id="username" />
+				<p id="cont1"></p>
+			</div>
+			<div>
+				<span>密码：</span><input type="password" id="pas" />
+				<p id="cont2"></p>
+			</div>
+			<div>
+				<span>邮箱：</span><input type="email" id="eaml" />
+				<p id="cont3"></p>
+			</div>
+			<div>
+				<input type="button" id="btn" value="注册" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function() {		 
+						
+						
+				// 用户名
+				var yhm = null;
+				$("#username").blur(function() { 
+					//用户名正则，4到16位（字母，数字，下划线，减号）  
+					var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+					 
+					if(reg.test($("#username").val()) == false) {
+						yhm = false;
+							$("#cont1").html("用户名为4到16位(字母,数字,下划线,减号)")
+						} else {
+							yhm = true;
+							$.get("http://47.104.244.134:8080/username.do", {
+								"username": $("#username").val()
+							}, function(data) {
+								if(data.code == 0) {
+									$("#cont1").html("用户名重复,请重新输入")
+								} else {
+									$("#cont1").html("用户名可以使用")
+								}
+							})
+
+						}
+					})
+				
+				
+						
+				//密码  
+				var pass = null;
+				$("#cont2").html("密码4到16位（字母，数字，下划线，减号）")
+				$("#pas").blur(function(){
+					//用户名正则，4到16位（字母，数字，下划线，减号）
+                    var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+					if(reg.test($("#pas").val())){
+						pass = true;
+					}else{
+						pass = false;
+					}	
+				})
+				
+				
+				//邮箱 
+				var eml = null;
+				$("#eaml").blur(function(){
+					 var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+					 if(reg.test($("#eaml").val())){
+					 	eml = true;	
+					 	$.get("http://47.104.244.134:8080/useremail.do",{email:$("#eaml").val()},function(data){
+					 		if(data.code == 1){
+					 			$("#cont3").html("邮箱可以使用")
+					 		}else{
+					 			$("#cont3").html("邮箱已经被注册")
+					 		}
+					 	})
+					 }else{
+					 	eml = false;
+					 	$("#cont3").html("邮箱格式不正确")
+					 }
+				})
+				
+				
+				$("#btn").click(function(){
+					if(yhm == true && pass == true && eml == true){
+						 $.post("http://47.104.244.134:8080/usersave.do",{
+						 	username:$("#username").val(),
+						 	password:$("#pas").val(),
+						 	email:$("#eaml").val(),
+						 	sex:"男"
+						 },function(data){
+						 	if(data.code == 0){
+						 		location.href = "login.html";
+						 	}else{
+						 		location.href = "register.html";
+						 	}
+						 })
+					}
+				})
+				
+
+				})
+		</script>
+	</body>
+
+</html>

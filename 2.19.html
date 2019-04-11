@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--<input type="text" id="txt" />
+		<input type="button" id="btn" value="成绩评定"/>
+		<script type="text/javascript">
+			//案例：输入分数，判定成绩等级(if和switch两种写法)
+			btn.onclick = function(){
+				var val = txt.value;
+				if(val>90){
+					document.write("优")
+				}else if(val>80){
+					alert("良")
+				}else if(val>60){
+					alert("中")
+				}else{
+					alert("差")
+				}
+			}
+		</script>-->
+		
+		<!--<input type="text" id="txt" />
+		<input type="button" id="btn" value="成绩评定"/>
+		<script type="text/javascript">
+		    //案例：输入分数，判定成绩等级(if和switch两种写法)
+			btn.onclick = function(){
+				var val = txt.value;
+				var a = parseInt(val/10)
+				switch(a){
+					case 10:
+					case 9:
+						alert("优")
+						break;
+					case 8:
+					    alert("良")
+					    break;
+					case 7: 
+					case 6:
+						alert("中")
+						break;
+					default:
+						alert("差")
+					
+				}
+			}	
+		</script>-->
+		
+		
+		<!--
+		<input type="text" id="txt" palceholder=""/>
+		<input type="button" id="btn" value="计算天数" />
+		<script type="text/javascript">
+			/*输入月份，显示当月的天数
+			要求：1) 利用case穿透简化代码*/
+			 
+			btn.onclick = function (){
+				var val = txt.value;
+			//	console.log(typeof val)
+				var year = prompt("年份")
+				console.log(val) 
+				switch(val){
+					case 2:
+						if(year%4 == 0 && year%100 != 0 || year%400 == 0){
+							alert(29+"天")
+					}else{
+						alert(28+"天")
+					}
+						break;
+					case 4:
+					case 6:
+					case 9:
+					case 11:
+						alert(30+"天")
+						break;
+					default:
+						alert(31+"天")
+				} 
+			}
+		</script>-->
+		
+		用户名：<input type="txt" id="txt"/>
+		电话号：<input type="text" id="txt1" />
+		<input type="button" id="btn" value="保存"/>
+		<script type="text/javascript">
+			//制作一个表单 
+			/*要求：1）点击保存按钮时，使用JS判断用户的联系电话是否为纯数字，如果用户输入有错误，使用alert()弹框警告
+                2）判断用户名是否填写，如果空白，使用alert弹框警告*/
+			btn.onclick = function(){
+				var val = txt.value;
+				var val1 = Number(txt1.value);
+				//console.log(val1)
+				var type = typeof val1;
+				//console.log(type)
+				if(val == ""){
+					alert("用户名不能为空")
+				}
+				/*if(isNaN(val1) || val1 == ""){
+					alert("电话号必须是纯数字")
+				}*/
+				if(parseInt(val1) != Number(val1)){
+					alert("电话号必须是纯数字")
+				}
+				
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>

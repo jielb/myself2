@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+				height: 1500px;
+			}
+			#box{
+				position: absolute;
+				width: 100px;
+				height: 300px;
+				right:50px; 
+				background: red;
+			} 
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			let oBox = document.getElementById("box");
+			var ch = document.documentElement.clientHeight;
+			var oh = oBox.offsetHeight;
+			var posit = (ch-oh)/2
+			
+			oBox.style.top = posit + "px";
+			window.onscroll = () => {
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				
+				
+			    var num =scrollTop + posit; 
+			    
+			    startMove(oBox,{top:num})
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

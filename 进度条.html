@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 500px;
+				height: 50px;
+				background: #CCCCCC;
+			}
+			
+			#move {
+				display: inline-block;
+				height: 30px;
+				margin-top: 10px;
+				background: red;
+			}
+			span{
+				font-size: 1px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div id="move"></div>
+			<span id="cont">0%</span>
+		</div>
+		<script type="text/javascript">
+			var oMove = document.getElementById("move")
+			function foo(obj,num) {
+				var count = 0;
+				var timer = setInterval(function() {
+					++count;
+					obj.style.width = count + "%";
+					var oSpan = obj.nextElementSibling || obj.nextSibling
+					oSpan.innerHTML = count + "%";
+					if(count >= 97){
+						oSpan.innerHTML = "";
+					}
+					if(count == num) {
+						clearInterval(timer)
+					}
+				}, 20)
+
+			}
+			foo(oMove,100);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			img{
+				display: block;
+			}
+			#box{
+				position: relative;
+				width: 100px;
+				height: 100px;
+				left: 300px;
+				top: 30px;
+				border: 1px solid #CECECE;
+			}
+			#box div:last-child{
+				width:100px;
+				height: 100px;
+			}
+			#box div:last-child img{
+				width: 100px;
+				height: 100px;
+			}
+			#box div:first-child{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: white;
+				opacity: 0;
+				filter: alpha(opacity=0);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div></div>
+			<div>
+				<img src="../3.14/img/m03.jpg" />
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			$(function(){
+				$("#box").mouseover(function(){
+					$(this).find("div:first").stop().animate({"opacity":"0.2"},800)
+				}).mouseout(function(){
+					$(this).find("div:first").stop().animate({"opacity":"0"},800) 
+				})
+			})
+			
+			
+		</script>
+	</body>
+</html>

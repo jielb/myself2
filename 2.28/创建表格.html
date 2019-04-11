@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			td{
+				border: 1px solid red;
+				width: 30px;
+				height: 20px;
+			}
+			table{
+				border-spacing: 0;
+				border-collapse: collapse;
+			}
+			
+		</style>
+	</head>
+	<body> 
+		<input type="text" id="txt" />
+		<input type="text" id="txt1" />
+		<input type="button" id="btn" value="创建表格" />
+		<div id="box"></div> 
+		<script type="text/javascript">
+			var oTxt = document.getElementById("txt");
+			var oTxt1 = document.getElementById("txt1");
+			var oBtn = document.getElementById("btn");
+			var oBox = document.getElementById("box")
+			
+			btn.onclick = function(){
+				var val = Number(oTxt.value);
+				var val1 = Number(oTxt1.value);
+				
+				var tab = document.createElement("table")
+				
+				for(var i = 0 ; i < val ; i++){
+					var r = document.createElement("tr")
+					tab.appendChild(r);
+					for(var j = 0 ; j < val1;j++){
+						var d = document.createElement("td")
+						r.appendChild(d)
+					} 
+				}  
+				return document.body.appendChild(tab)
+			}
+			
+			
+		 
+			
+ 
+			
+			
+			
+			 
+			
+		</script>
+		
+	</body>
+</html>

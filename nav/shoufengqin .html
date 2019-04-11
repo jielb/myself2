@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li,h4{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			#sfq{
+				width: 520px;
+				height: 140px;
+				margin: 20px auto;
+			}
+			#sfq ul{
+				height: 140px;
+				position: relative;
+			}
+			#sfq ul li{
+				height: 140px;
+				width: 30px;
+				float: left; 	 
+				border: 1px solid #00FFFF; 
+				position: relative;
+				overflow: hidden;
+				border-left: 0;
+			}
+			#sfq ul li h4.active {
+				background: #f42760;
+				color: #fff;
+			}
+			#sfq ul li h4{
+				width: 30px;
+				height: 140px;
+				font-size: 16px; 
+				font-weight: 100; 
+			}
+			 
+			#sfq ul li.active {
+				width: 396px;
+			}
+			#sfq ul li div{
+				width: 396px;
+				height: 140px;
+				position: absolute;
+				background: red;
+				border-left: 1px solid #00FFFF;
+				top: 0;
+				left: 30px;
+				z-index: 0;
+			}
+			#sfq ul li img{
+				width: 396px;
+				height: 140px;
+			}
+			#sfq ul li.last{
+				position: absolute;
+				top: 0;
+				right: 0;
+			} 
+			
+		</style>
+	</head>
+	<body>
+		<div id="sfq">
+			
+			<ul>
+				<li class="active">
+					<h4 class="active">图片一</h4>
+					<div><img src="imgs/bg1.jpg" /></div>
+				</li>
+				<li>
+					<h4>图片二</h4>
+					<div><img src="imgs/bg2.jpg" /></div>
+				</li>
+				<li>
+					<h4>图片三</h4>
+					<div><img src="imgs/bg3.jpg" /></div>
+				</li>
+				<li class="last">
+					<h4>图片四</h4>
+					<div><img src="imgs/bg4.jpg" /></div>
+				</li>
+			</ul>
+		</div>	
+		<script type="text/javascript">
+			$(function(){
+				
+				$("#sfq").find("li").hover(function(){
+					$(this).stop().animate({"width":"426px"},1000).find("h4").addClass("active").end().siblings().stop().animate({"width":"30px"},1000).find("h4").removeClass("active")
+				})  
+			})
+				
+		</script>
+		
+		
+	</body>
+</html>

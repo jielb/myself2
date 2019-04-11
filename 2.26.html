@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="txt" />
+		<input type="button" id="btn" value="提交" />
+		<p id="cont"></p>
+		<script type="text/javascript">
+			//密码强度
+		/*	btn.onclick = function(){
+				
+				var val = txt.value;
+				var flag1 = false;
+				var flag2 = false;
+				var flag3 = false;
+				var num;
+				for(var i = 0; i < val.length;i++){
+					num = val.charCodeAt(i);
+					if(num > 47 && num < 58){
+						flag1 = true;
+					}
+					if(num > 64 && num < 91){
+						flag2 = true;
+					}
+					if(num > 96 && num < 123){
+						flag3 = true;
+					}
+				}
+				if(flag1&&flag2&&flag3){
+					alert("强")
+				}else if(flag1&&flag2||flag1&&flag3||flag2&&flag3){
+					alert("中")
+				}else{
+					alert("弱")
+				}
+			}*/
+			//4位数字字母随机验证码
+			/*btn.onclick = function(){
+				var str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				var str1 = "&nbsp;";
+				for(var i = 0 ;i < 4;i++){
+					str1 += str.charAt(parseInt(Math.random()*str.length));
+				}
+				cont.innerHTML = str1
+			}*/
+			
+			//已知字符串“a,a,b,c,c,d”，统计每个字符出现的次数，结果显示 a 2、b 1、c 2、d1，去掉重复的字符，使结果显示 abcd
+				/*btn.onclick = function(){
+					var str = "a,a,b,c,c,d"
+					var arr = str.split(",");
+					var obj = {};
+					var newArr = [];
+					for(var i = 0;i < arr.length;i++){
+						if(obj[arr[i]] == undefined){
+							obj[arr[i]] = 1;
+							newArr.push(arr[i])
+						}else{
+							obj[arr[i]]++;
+						}
+					}
+					//console.log(obj)
+					for(var j in obj){
+						//console.log(j);
+						document.write(j+obj[j]+",")
+					}
+					document.write(newArr.join(""));
+				}
+			*/
+		</script>
+	</body>
+</html>

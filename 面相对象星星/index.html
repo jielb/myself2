@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="startMove.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html{
+				height: 100%;
+			}
+			body{
+				padding: 0;
+				margin: 0;
+				height: 100%;
+				background: url(bg.jpg) no-repeat;
+				background-size: cover;
+			}
+			img{
+				width: 20px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<script src="startMove.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			 function Star(){
+			 	this.node = document.createElement("img")
+			 	this.node.src = "snow.gif"
+			 }
+			 
+			 
+			 Star.prototype.pos = function(){
+			 	var cw = document.documentElement.clientWidth;
+			 	var ch = document.documentElement.clientHeight;
+			 	this.posx = Math.floor(Math.random()*(cw - 30));
+			 	this.posy = Math.floor(Math.random()*(ch - 30));
+			 }
+			 
+			 Star.prototype.show = function(){
+			 	this.pos();
+			 	this.node.style.left = this.posx + "px";
+			 	this.node.style.top  = this.posy + "px";
+			 	
+			 	document.body.appendChild(this.node)
+			 }
+			 
+			 Star.prototype.move = function(){
+			 	this.pos();
+			 	startMove(this.node,{left:this.posx,top:this.posy},()=>{
+			 		this.move();
+			 	})
+			 }
+			 
+			 for(var i = 0 ; i < 150;i++){
+			 	var star = new Star();
+			 	star.show();
+			 	star.move();
+			 }
+			 
+		</script>
+	</body>
+</html>

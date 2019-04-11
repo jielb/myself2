@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="3.8/common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			#btn{
+				position: absolute;
+				right: 20px;
+				bottom: 15px;
+				outline: none;
+				width: 100px;
+				height: 30px;
+				display: block;
+				text-align: center;
+				line-height: 30px;
+				background: #C1C1C1;
+				color: red;
+			}
+			#box{
+				position: absolute;
+				display: none;
+				width: 200px;
+				height: 200px;
+				background: red;
+			}
+			span{
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 20px;
+				height: 20px;
+				display: block;
+				background: #000000;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="box">
+			<span></span>
+		</div>
+		<a href="#" id="btn">点击有惊喜</a>  
+		<script type="text/javascript">
+			let oBox = document.getElementById("box");			
+			let oBtn = document.getElementById("btn");
+			let oSpan = document.getElementsByTagName("span")[0];
+			if(getCookie()){
+				oBox.style.left = getCookie("left")
+				oBox.style.top = getCookie("top") 
+			}
+			oBox.onmousedown = function(e){
+				let evt = e || event;
+				let x = evt.offsetX;
+				let y = evt.offsetY;
+				document.onmousemove = function(e){
+					let evt = e || event;
+					let left = evt.clientX - x;
+					let top = evt.clientY - y;
+					
+					oBox.style.left = left + "px";
+					oBox.style.top = top + "px"
+					
+					 
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null; 
+					setCookie("left",oBox.style.left,7)
+					setCookie("top",oBox.style.top,7)
+					
+				}
+			}
+ 
+			oBtn.onclick = function(){
+				oBox.style.display = "block"; 
+			    return false;
+			}
+			
+		    oSpan.onclick = function(){ 
+				oBox.style.display = "none"  
+				oBox.style.left =  getcookie("left")
+				oBox.style.top = getCookie("top")
+			}
+	
+		</script>
+		
+		
+	</body>
+</html>

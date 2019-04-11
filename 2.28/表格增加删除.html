@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			td{
+				width: 30px;
+				height: 20px;
+				margin: 5px;
+				border: 1px solid #cecece;
+				font-size: 14px;
+				line-height: 20px;
+				text-align: center;
+			}
+			td:last-child{
+				background: #F0F8FF;
+				color: red;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text"/>
+		<input type="text"/>
+		<input type="text"/>
+		<input type="button" id="btn" value="添加" />
+		<table id="tab"></table>
+		
+		<script type="text/javascript">
+			var Tab = document.getElementById("tab");
+			var Input = document.getElementsByTagName("input");
+			Input[3].onclick = function (){ 
+				var Tr = document.createElement("tr")
+				for(var i = 0;i < 3;i++){
+					var Td = document.createElement("td");
+					var val = Input[i].value;
+					
+					Td.innerHTML = val;
+					Tr.appendChild(Td);
+					Tab.appendChild(Tr);
+				}
+				var ospan = document.createTextNode("删除");
+				var t = document.createElement("td");
+				t.appendChild(ospan);
+				Tr.appendChild(t);
+				Tab.appendChild(Tr);
+		 		for(var i = 0 ;i < Tab.children.length ;i++){
+		 			Tab.children[i].children[3].onclick = function(){
+		 				Tab.removeChild(this.parentNode)
+		 			} 
+		 		} 
+			}
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

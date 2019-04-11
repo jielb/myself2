@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li> 
+			<li>3</li> 
+		</ul>
+		<script type="text/javascript">
+			
+			//闭包  ： 在一个函数外部，可以访问到该函数内部的变量的函数
+			//闭包意义：尽量少的使用全局变量，减少内存开销，减少全局污染，有利于协同开发
+			//闭包弊端：使用闭包会造成内存泄露
+			//内存泄露：函数不能被使用也不能被清除
+			//垃圾回收机制：标记清除 引用计数
+			let aLi = document.getElementsByTagName("li");
+			
+			/*for(var i = 0; i < aLi.length; i++) {
+				(function(a){
+					aLi[a].onclick = function(){
+						console.log(a)
+					}
+				})(i) 	
+			}*/
+			/*for(var i = 0; i < aLi.length; i++){
+				aLi[i].onclick = (function(a){
+					return function(){
+						console.log(a)
+					}
+				})(i);
+				
+			}*/
+			
+			
+			//闭包面试题：
+			
+			function fun(n,o){
+				//console.log(o); // 
+				return {
+					fun:function(m){
+						console.log(m);
+						console.log(n)
+						return fun(m,n);//对原函数进行回调
+					}
+				} 
+			}
+			var a = fun(0);// o = undefined , m = undefined ,n=0 
+			//console.log(a)
+			a.fun(1) //m = 1, n =0
+		/*	a.fun(2) // m = 2, n = 0 
+			a.fun(3) // m = 3, n = 0*/
+			
+			/*var b = fun(0).fun(1).fun(2).fun(3)*/
+			//相当于
+			/*var b = fun(0); // o = undefined; m = undefined, n = 0;
+			//var b = { fun:fn } // 调用对象方法
+		 
+			var a = b.fun(1) // o = 0, m = 1, n = 0  (m,n)=>(1,0) -> (n,0) =>(1,0)
+			var c = a.fun(2) // 0 = 1
+			*/
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

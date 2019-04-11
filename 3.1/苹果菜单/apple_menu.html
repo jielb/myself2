@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苹果菜单练习</title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			#box {
+				width: 100%;
+				height: auto;
+				position: absolute;
+				bottom: 0;
+				text-align: center;
+			}
+			#box img {
+				width: 64px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<img src="images/1.png" />
+			<img src="images/2.png" />
+			<img src="images/3.png" />
+			<img src="images/4.png" />
+			<img src="images/5.png" />
+		</div>
+		 
+		<script>
+			var aImg = document.getElementsByTagName("img"); 
+			var oBox = document.getElementById("box");
+		 
+			document.onmousemove = function(e){
+				// console.log("aaa")
+				var evt = e || event;
+				var x = evt.clientX;
+				var y = evt.clientY;
+				
+				for(var i = 0; i < aImg.length ; i++){
+					var h = y - aImg[i].offsetHeight/2 - oBox.offsetTop - aImg[i].offsetTop;
+					var w = x - aImg[i].offsetWidth/2 - aImg[i].offsetLeft;
+					
+					var q = Math.sqrt(Math.pow(w,2)+Math.pow(h,2));
+					
+					if(q < 300){
+						aImg[i].style.width = 64 + (1-q/300)*64 + "px";
+					}else{
+						aImg[i].style.width = "64px";
+					}
+				} 
+				 	
+			}
+		</script>
+	</body>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="cart.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			
+			ul li{
+				position: relative;
+				border: 1px solid #CECECE;
+				width: 98%;
+				margin: 15px;
+				float: left; 
+			}
+			li img{  
+				float: left;
+				width: 100px;
+				height: 100px;
+				margin-left: 40px;
+			}
+			li input{
+				position: absolute;
+				top: 40px;
+				margin: 0 10px;
+				float: left;
+			}
+			li div:nth-of-type(2){
+				position: absolute;
+				left: 400px;
+				top: 30px;
+			}
+			li div:nth-of-type(2) span{
+		 		width: 100px;
+		 		height: 30px;
+		 		display: block;
+		 		line-height: 20px;
+		 		
+			}
+			li div:nth-of-type(2) span:last-child{
+				padding-left: 10px;
+				color: red;
+			}
+			
+			li div:nth-of-type(3) {
+				position: absolute;
+				right: 180px; 
+				top:30px;
+			}
+			li div:nth-of-type(3) span {
+				cursor: pointer;
+				width: 30px;
+				height: 30px;
+				display: block;
+				float: left;
+				margin:  0 5px;
+				font-size: 16px;
+				text-align: center;
+				line-height: 30px;
+				background: red;
+			}  
+			li div:nth-of-type(3) span:nth-child(2){
+				background: none;
+				border: 1px solid #CECECE;
+			}
+			li div:nth-of-type(3) span:nth-child(4){
+				width: 50px;
+			}
+			#num{
+				margin-left: 30px;
+				color: red;
+			}
+			#price{
+				margin-left: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="cart"></ul>
+		<div id="num"></div>
+		<div id="price"></div>
+		<script type="text/javascript">
+			let oCart = document.getElementById("cart");
+			let oNum = document.getElementById("num"); 
+			let oPrice = document.getElementById("price"); 
+			
+			 
+			 
+			var cart = new Cart();
+			cart.cart(oCart);
+			cart.cartnum();
+			cart.cartadd();
+			cart.cartdelete();
+			oNum.innerHTML = "总数："+cart.sum;
+			cart.cartprice( )
+			oPrice.innerHTML = "总价：" + cart.price
+		</script>
+	</body>
+</html>

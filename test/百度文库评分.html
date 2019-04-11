@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box {
+				width: 1000px;
+				height: 30px;
+				margin: 50px 100px;
+				line-height: 30px;
+			}
+			
+			#box div {
+				float: left;
+			}
+			
+			#star {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div id="star">
+				<img src="img/star-default.jpg" />
+				<img src="img/star-default.jpg" />
+				<img src="img/star-default.jpg" />
+				<img src="img/star-default.jpg" />
+				<img src="img/star-default.jpg" />
+			</div>
+			<div id="starcont">
+				<img src="img/JS21.jpg" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			var data = ["很不满意", "不满意", "一般", "满意", "非常满意"];
+			var oStar = document.getElementById("star");
+			var oCont = document.getElementById("starcont");
+			var aImg = oStar.children;
+			var flag = null;
+
+			for(let i = 0; i < aImg.length; i++) {
+				flag = false;
+				aImg[i].onmouseenter = function() {
+					oCont.innerHTML = data[i]
+					for(j = 0; j <= i; j++) {
+						if(j < 2) {
+							aImg[j].src = "img/star-bad.jpg"
+						} else {
+							for(let j = 0; j <= i; j++) {
+								aImg[j].src = "img/star-good.jpg"
+							}
+						}
+					}
+				}
+			 
+				aImg[i].onmouseleave = function() {
+						for(let i = 0; i < aImg.length; i++) {
+							if(flag == false){
+								aImg[i].src = "img/star-default.jpg";
+								oCont.innerHTML = '<img src="img/js21.jpg"/>';								
+							}else{
+								
+							}
+						}						
+					 
+				}
+				//假设思想 + 添加点击按钮出现bug
+				aImg[i].onclick = function() {			
+					flag = true;
+					if(j < 2) {
+						aImg[j].src = "img/star-bad.jpg"
+					} else {
+						for(let j = 0; j <= i; j++) {
+							aImg[j].src = "img/star-good.jpg"
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

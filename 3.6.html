@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,
+			p {
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				text-decoration: none;
+				color: #000000;
+			}
+			#box {
+				width: 480px;
+				margin: 50px 0 0 400px;
+			}
+			
+			#box div {
+				float: left;
+			}
+			
+			#box div div {
+				float: left;
+			}
+			
+			#box div div span {
+				width: 70px;
+				height: 34px;
+				display: block;
+				float: left;
+				text-align: center;
+				line-height: 30px;
+				background: #C1C1C1;
+			}
+			
+			#box div div input {
+				width: 400px;
+				height: 27px;
+				line-height: 30px;
+				border: 1px solid C1C1C1;
+				padding: 3px 0 0 6px;
+				outline: none;
+			}
+			
+			#box div p {
+				font-size: 5px; 
+				float: left;
+				width: 480px;
+				height: 15px;
+			}
+			#box div p.color{
+				color: blue;
+				opacity: 0.6;
+				filter: alpha(opacity=60);
+			}
+			#box div p.red{
+				 color: red;
+			}
+			#box div #btn {
+				margin-top: 5px;
+				width: 480px;
+				height: 33px;
+				display: block;
+				text-align: center;
+				line-height: 33px;
+				font-size: 16px;
+				font-weight: 800;
+				background: #c2c2c2;
+				outline: none;
+				cursor: pointer;
+			}
+			
+			#box div #btn:hover {
+				background: #CCCCCC;
+				color: red;
+			}
+			
+			#box #ran {
+				width: 476px;
+				height: 30px; 
+			}
+			#box #rand span{
+				width: 70px;
+				height: 34px;
+				display: block;
+				float: left;
+				text-align: center;
+				line-height: 30px;
+				background: #C1C1C1;
+			}
+			#box #rand #txt5{
+				width: 278px;
+				height: 30px;
+				float: left;
+				outline: none;
+				border: 1px solid #c1c1c1;
+			}
+			#box #rand #cont5{
+				cursor: pointer;
+				font-size: 14px;
+				font-weight: 600;
+				text-align: center;
+				line-height: 34px;
+				height: 34px;
+				width: 130px;
+				background: #F0F8FF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div>
+				<div id="">
+					<span>用户名</span>
+					<input type="text" id="txt1" />
+				</div>
+				<p id="cont1"></p>
+			</div>
+			<div>
+				<div id="">
+					<span>电话号</span>
+					<input type="text" id="txt2" />
+				</div>
+				<p id="cont2"></p>
+			</div>
+			<div>
+				<div id="">
+					<span>邮箱</span>
+					<input type="text" id="txt3" />
+				</div>
+				<p id="cont3"></p>
+			</div>
+			<div>
+				<div id="">
+					<span>密码</span>
+					<input type="password" id="txt4" />
+				</div>
+				<p id="cont4"></p>
+			</div>
+			<div id="rand">
+				<span>验证码</span>
+				<input type="text" id="txt5"/>
+				<div id="cont5">刷新</div>
+			</div>
+			<div>
+				<a href="" id="btn">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册</a>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var Txt1 = document.getElementById("txt1");
+			var Txt2 = document.getElementById("txt2");
+			var Txt3 = document.getElementById("txt3");
+			var Txt4 = document.getElementById("txt4");
+			var Txt5 = document.getElementById("txt5");
+			var Cont1 = document.getElementById("cont1");
+			var Cont2 = document.getElementById("cont2");
+			var Cont3 = document.getElementById("cont3");
+			var Cont4 = document.getElementById("cont4");
+			var Cont5 = document.getElementById("cont5");
+			var oBtn = document.getElementById("btn")
+
+			var yhm = null;
+			Txt1.onblur = function() {
+				var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+				if(reg.test(Txt1.value)) {
+					yhm = true;
+					Cont1.innerHTML = "用户名可用";
+					Cont1.className = "color"
+				} else {
+					Cont1.innerHTML = "用户名为4到16位（字母，数字，下划线，减号）";
+					Cont1.className = "red"
+				}
+			}
+			Txt1.onfocus  = function(){
+				Cont1.innerHTML = "";
+			}
+
+			var ph = null;
+			Txt2.onblur = function() {
+				var reg = /^1(3|5|7|8)\d{9}$/;
+				if(reg.test(Txt2.value)) {
+					ph = true;
+					Cont2.innerHTML = "电话号可以使用";
+					Cont2.className = "color"
+				} else {
+					Cont2.innerHTML = "电话号输入错误"
+					Cont2.className = "red"
+				}
+			}
+			Txt2.onfocus  = function(){
+				Cont2.innerHTML = "";
+			}
+
+			var yx = null;
+			Txt3.onblur = function() {
+				var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+				if(reg.test(Txt3.value)) {
+					yx = true;
+					Cont3.innerHTML = "邮箱可以使用";
+					Cont3.className = "color"
+				} else {
+					Cont3.innerHTML = "邮箱格式错误";
+					Cont3.className = "red"
+				}
+			}
+			Txt3.onfocus  = function(){
+				Cont3.innerHTML = "";
+			}
+			
+			
+			var mm = null;
+			Txt4.onblur = function() { 
+    			var reg = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+				if(reg.test(Txt4.value)) {
+					mm = true;
+					Cont4.innerHTML = "密码可以使用";
+					Cont4.className = "color"
+				} else {
+					Cont4.innerHTML = "密码最少6位,至少1个大写字母，1个小写字母，1个数字，1个特殊字符";
+					Cont4.className = "red"
+				}
+			}
+			Txt4.onfocus  = function(){
+				Cont4.innerHTML = "";
+			}
+			
+			
+			
+			
+			var yz = null;
+			Cont5.onclick = function(){
+				Cont5.innerHTML = "";
+				var cont = ""
+				var color = "#"
+				var str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+				var str1 = "0123456789ABCDEF"
+				for(var i = 0;i < 4; i++){
+					var num = Math.floor(Math.random()*str.length)
+					cont += str[num]
+					for(var j = 0 ;j < 6; j++){
+						var nn = Math.floor(Math.random()*str1.length);
+						color += str1[nn];
+					}
+					console.log(color)
+					//console.log(cont)
+					//cont.style.color = color;
+				}
+				Cont5.innerHTML = cont;
+			}
+			Txt5.onblur = function(){
+				var val = Cont5.innerText;
+				var val1 = Txt5.value;
+				if(val == val1){
+					yz = true;
+				}else{
+					Cont5.innerHTML = "刷新"
+					Txt5.value = null;
+				}
+				
+				
+			}
+			oBtn.onclick = function(){
+				if(yhm == true && ph == true && yx == true && mm == true && yz == true){
+					location.href = "http://www.baidu.com"
+				}
+				return false;
+			}
+			
+		</script>
+	</body>
+
+</html>

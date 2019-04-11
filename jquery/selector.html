@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<style type="text/css">
+			body,p{
+				padding: 0;
+				margin: 0;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<p>111</p>
+		<span>span0</span>
+		<div id="div1" class="box1">div1<div>div1-1</div><span>span1</span></div>
+		<div id="div2" class="box2">div2<span id="span2">span2</span></div>
+		<div id="div3" class="box3">div3<span>span3</span></div>
+		<div id="div4" class="box4">div4</div>
+		<div id="div5" class="box5">div5</div>
+		<div id="div6" class="box6"></div>
+		<p id="p1">p1</p>
+		<p id="p2">p2</p>
+		<p id="p3">p3</p>
+		<p id="p4">p4</p>
+		<div id="div7">		
+			div7
+			<input type="text" id="txt1" value="text1"/>
+		</div>
+			<input type="checkbox" id="check1"/>
+			<input type="checkbox" id="check1"/>
+			<input type="checkbox" id="check1"/>
+			<input type="checkbox" id="check1"/>
+			<input type="checkbox" id="check1"/>
+			<input type="radiu" id="rad1" />
+			<input type="checkbox" id="check1"/>
+		
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				//console.log($("#div1"));
+				//$("#div1").css({"width":"300px","height":"30px","background":"red"})
+				/*$("#div1").click(function(){
+					console.log("aaa")
+				})*/
+				/*$("div").click(function(){
+					console.log($(this))
+				})*/
+				
+				/*$(".box3").click(function(){
+					console.log("ccc")
+				})*/
+				/*console.log($("*"))*/
+				//console.log($("#p1,#div1,.box6"))
+				//console.log($("body div"))
+				//console.log($("body,div"))
+				//console.log($("body div span"))
+				//console.log($("div>#span2"))
+				//console.log($("body span"))
+				//console.log($("div+div"))
+				//console.log($("div+p"))
+				//console.log($("#div2 span:first"))
+				//console.log($("span:first")) 
+				//console.log($("div:first"))
+				//console.log($("span:last-child"))
+				//console.log($("#div1 span:last-child"))
+				//console.log($("#div1 span:last-child"))
+				//console.log($("p:last-child"))//
+				//console.log($("span:last"))
+				
+				//console.log($("span:first")) //全部span中的第一个
+				//console.log($("span:first-child")) //父级下直接子级中排在第一个span
+				//console.log($("#div2 span:first-child"))
+				//console.log($("div:eq(1)"))
+				//console.log($(":eq(0)"))
+				//console.log($(":gt(2)"))
+				//console.log($(":header"))
+				
+				
+				//问题1  :focus
+				/*console.log($("*:focus"))  
+				console.log($("#txt1:focus"))*/
+				
+				
+				
+				//console.log($("div:contains('div2')"))   1
+				//console.log($("p:contains('p1')"))
+				//console.log($("*:contains('div2')"))  4
+				//console.log($("div:empty"))
+				/*console.log($("div:has('span')"))
+				console.log($("div:has('#span2')"))*/
+				///console.log($("span:empty"))
+				/*console.log($("div[id*=div]"))
+				console.log($("div[id][class$='6']"))*/
+			//	console.log($("body #div7 input:checkbox:last"))
+				/*console.log()
+				console.log()
+				console.log()
+				console.log()
+				console.log()
+				console.log()
+				console.log()
+				console.log()
+				console.log()
+				console.log()
+				console.log()*/
+			//	$("#div1 span").append("aaaa")
+				/*$("p").appendTo("#div6").parent().add("p").css({"border":"1px solid #cecece","margin":"5px"}).end().css("color","red")*/
+				
+				
+				///andSelf()  用法
+				/*$("#div7").find('input:first').css({"color":"blue","background":"blue"}).andSelf().css("color","red")*/
+				
+				
+			})
+		</script>
+	</body>
+</html>

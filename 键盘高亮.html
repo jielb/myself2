@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			div {
+				margin: 20px;
+				width: 50px;
+				height: 50px;
+				background: #C1C1C1;
+				float: left;
+				color: white;
+				text-align: center;
+				line-height: 50px;
+			}
+			
+			.color {
+				background: red;
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<script type="text/javascript">
+			//键盘高亮
+			var oFragment = document.createDocumentFragment();
+			for(var i = 0; i < 11; i++) {
+				var oDiv = document.createElement("div");
+				oFragment.appendChild(oDiv);
+			}
+			document.body.appendChild(oFragment);
+			var aDiv = document.getElementsByTagName("div");
+			//console.log(aDiv)
+			var arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "其它"]
+			for(var i = 0; i < aDiv.length; i++) {
+				aDiv[i].innerHTML = arr[i]
+			}
+			 
+			document.onkeydown = function(e) {
+				for(var i = 0; i < aDiv.length; i++) {
+					aDiv[i].className = "";
+				}
+				var evt = e || event;
+				var code = evt.keyCode || evt.which;
+
+				switch(code) {
+					case 96:
+						aDiv[0].className = "color"
+						break;
+					case 97:
+						aDiv[1].className = "color"
+						break;
+					case 98:
+						aDiv[2].className = "color"
+						break;
+					case 99:
+						aDiv[3].className = "color"
+						break;
+					case 100:
+						aDiv[4].className = "color"
+						break;
+					case 101:
+						aDiv[5].className = "color"
+						break;
+					case 102:
+						aDiv[6].className = "color"
+						break;
+					case 103:
+						aDiv[7].className = "color"
+						break;
+					case 104:
+						aDiv[8].className = "color"
+						break;
+					case 105:
+						aDiv[9].className = "color"
+						 break;
+					default:
+						aDiv[10].className = "color"; 
+				}
+			}
+			
+		</script>
+
+	</body>
+
+</html>

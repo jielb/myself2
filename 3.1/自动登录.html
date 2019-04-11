@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			#fox{
+				width: 150px;
+				height: 150px;
+				margin: 50px auto;
+			}
+			#box{
+				width: 100px;
+				height: 40px;
+				border: 1px solid #cecece;
+				font-size: 14px;
+				text-align: center;
+				line-height: 40px;
+			}
+			#box1{
+				width: 120px;
+				height: 60px;
+				background: #CCCCCC;
+				border: 1px solid #CC0033
+				color: red;
+				display: none;
+			}
+		
+		
+			
+		</style>
+	</head>
+	<body>
+		<div id="fox">
+			<div id="box">
+				<input type="radio" />
+				自动登录
+			</div>
+			<div id="box1">为了您的安全请不要在公共场所使用！</div>
+		</div>
+		<script type="text/javascript">
+			var oBox = document.getElementById("box");
+			var oBox1 =document.getElementById("box1");
+			
+			oBox.onmouseover = function(){
+				oBox1.style.display = "block";
+			}
+			oBox.onmouseout = function(){
+				oBox1.style.display = "none";
+			}
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="common.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			document.cookie = "productId=10001";
+			document.cookie = "username=lifengna";
+			document.cookie = "username1=lifengna";
+			console.log(document.cookie);
+			console.log(getCookie("productId"));
+			removeCookie("username1");
+		</script>
+	</body>
+</html>

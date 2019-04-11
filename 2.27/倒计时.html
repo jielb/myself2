@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,p{
+				margin: 0;
+				padding: 0;
+			}
+			p{
+				color: red;
+				font-size: 16px;
+				margin: 100px 0 0 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<p id="cont"></p>
+	  	<script type="text/javascript">
+	  		function foo(data){ 
+	  			 
+	  			var oCont = document.getElementById("cont")
+	  			
+	  			function move(){
+	  				
+	  				var oDate = new Date();
+	  				var ss = (data - oDate)/1000;
+	  			
+		  			var day = Math.floor(ss/3600/24);
+		  			var hour = Math.floor(ss/3600%24);
+		  			var minute = Math.floor(ss/60%60);
+		  			var second = Math.floor(ss%60);
+		  			return oCont.innerHTML = "倒计时：" + day +"天" + hour + "时" + minute + "分" + second + "分";
+		  			
+	  			}
+	  			
+	  			move();
+	  			
+	  			var timer = setInterval(function(){ 
+		  			 move();
+		  			if(ss <= 0){
+		  				clearInterval(timer);
+		  				return oCont.innerHTML = "倒计时结束"
+		  			}
+	  			},1000)	 
+	  			
+	  		}
+	  		
+	  		
+	  	 	var data = new Date("2019/3/1 12:00:00")
+	  		foo(data);
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		
+	  	</script>
+	</body>
+</html>

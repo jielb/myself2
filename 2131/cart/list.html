@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,ul,li,p{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			
+			#list li{
+				float: left;
+				margin-left: 10px;
+				width: 220px;
+				border: 1px solid #CECECE;
+				padding: 10px;
+			}
+			#list li img{
+				width: 220px;
+				height: 282px;
+			}
+			#list li p{
+				margin: 10px;
+			}
+			#list input{
+				width: 120px;
+				height: 40px;
+				background: red;
+				color: white;
+				cursor: pointer;
+				border: none;
+			}
+			#cartNums{
+				position: fixed;
+				right: 10px;
+				top: 10px;
+				font-size: 40px;
+			}
+		</style>
+		<script src="cart.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<ul id="list">
+			<!--<li>
+				<img src="1.jpg">
+				<p>11111</p>
+				<p>111</p>
+				<input type="button" class="addBtn" value="添加购物车">
+			</li>-->
+			
+		</ul>
+		<div id="cartNums">
+			<a href="cartList.html">0</a>
+		</div> 
+		<script type="text/javascript">
+			//创建商品列表
+			
+			let oList = document.getElementById("list");
+			let str = "";
+			
+			//遍历data，目的将所有的列表数据展示到页面上
+			for(let i = 0; i < data.length; i++){
+				str += `<li>
+					<img src="${data[i].imgUrl}">
+					<p>${data[i].title}</p>
+					<p>${data[i].price}</p>
+					<input type="button" data-id = "${data[i].id}"  class="addBtn" value="添加购物车">
+			   	</li>`;
+			}
+			
+			oList.innerHTML = str;
+			
+			let oNum = document.getElementById("cartNums").children[0];
+			
+			
+			
+			
+			let addBtns = document.getElementsByClassName("addBtn");
+			for(let i = 0; i < addBtns.length; i++){
+				addBtns[i].onclick = function(){
+					var id = this.getAttribute("data-id");
+					cart.addCart(id,1);
+					//点击按钮展示总数量
+					cart.getTotalNums();
+					oNum.innerHTML = cart.sum;
+					
+				}
+			}
+			
+			
+			
+			var cart = new ShoppingCart();
+			//默认展示总数量
+			cart.getTotalNums();
+			oNum.innerHTML = cart.sum;
+			
+			 
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

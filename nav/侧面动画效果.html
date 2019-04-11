@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li,p{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+			}
+			img{
+				display: block;
+			}
+			body{
+				height: 1000px;
+			}
+			#box{
+				height: 100%;
+				width: 20px;
+				background: #8C8C8C;
+				position: fixed;
+				right: 0;
+				top: 0;
+			}
+			#box ul{
+				margin-top: 100px;
+				background: red;
+			}
+			#box ul li {
+				position: relative;
+				line-height: 20px;
+				text-align: center;
+				height: 20px;
+				margin: 10px 0 ;
+				width: 100%;
+			}
+			#box ul li div{
+				height: 20px;
+				width: 50px;
+				position: absolute;
+				background: #00BFFF;
+				display: none;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li>
+					1
+					<div></div>
+				</li>
+				<li>
+					2
+					<div></div>
+				</li>
+				<li>
+					3
+					<div></div>
+				</li> 
+			</ul> 
+		</div>
+		<script type="text/javascript">
+			$("li").mouseenter(function(){
+				$(this).css({"background":"orange","color":"white","zIndex":"2"}).find("div").stop().animate({"left":"-50px"},200).css({"display":"block","background":"orange","zIndex":"-1"})
+				}).mouseleave(function(){
+				$(this).css({"background":"#8C8C8C","color":"black"}).find("div").stop().animate({"left":"0px"},200).css({"background":"#8c8c8c"})	
+			})
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

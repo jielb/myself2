@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			body{
+				height: 2000px;
+				margin: 0;
+				padding: 0;
+				position: relative;
+			}
+			#box{
+				width: 800px;
+				height: 500px;
+				border: 1px solid #cecece;
+				margin: 30px 0 0 300px;
+				position: relative;
+			}
+			#fox{
+				width: 200px;
+				height: 200px;
+				margin: 100px 0 0 100px;
+				position: absolute;
+				border: 3px solid #00FFFF;
+			}
+			#chil{
+				width: 50px;
+				height: 50px;
+				margin: 100px 0 0 60px;
+				border: 1px solid #cecece;
+				background: red;
+			}
+			#cont{
+				width: 100px;
+				height: 40px;
+				color: red;
+				text-align: center;
+				line-height: 40px;
+				position: fixed;
+				left: 10px;
+				top: 10px;
+				border: 1px solid #00FFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="fox">
+				<div id="chil"></div>
+			</div>
+		</div>
+		<div id="cont"></div>
+		<script type="text/javascript">
+			var oBox = document.getElementById("box");
+			var oFox = document.getElementById("fox");
+			var oCont = document.getElementById("cont"); 
+			var oChil = document.getElementById("chil");
+			//console.log(oBox.offsetLeft)    // 300  子级与直接定位父级有关
+			//console.log(oFox.offsetLeft)  //100 子级与直接定位父级有关
+			//console.log(oFox.offsetHeight)  //206  带边框 
+			//console.log(oFox.offsetWidth)  //206 带边框
+			//console.log(oFox.clientWidth)   //200  不带边框
+			//console.log(oFox.clientHeight)   //200 不带边框
+			
+	    //console.log(oChil.offsetLeft) //60子级与直接相关定位父级有关
+			
+			
+			
+			/*window.onscroll = function(){
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				oCont.innerHTML = scrollTop;
+			}*/
+			/*window.onmousemove = function(e){
+				var evt = e || event;
+				/*oCont.innerHTML = (evt.clientX - oBox.offsetLeft) +"," + (evt.clientY - oBox.offsetTop);*/
+			/*oCont.innerHTML = evt.pageY;   //有问题
+				
+			}*/
+			oChil.onclick = function(e){
+				var evt = e || event;
+				var x = evt.clientX;
+				oCont.innerHTML = x + "px"
+			}
+			
+			
+		</script>
+	</body>
+</html>

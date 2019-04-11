@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<img src="img/0.png" id="img0" />
+		<img src="img/0.png" id="img1"/>:
+		<img src="img/0.png" id="img2"/>
+		<img src="img/0.png" id="img3"/>:
+		<img src="img/0.png" id="img4"/>
+		<img src="img/0.png" id="img5"/>
+		
+		<script type="text/javascript">
+			function move(){
+				var oDate = new Date();
+			
+				var hour = oDate.getHours();
+				var minute = oDate.getMinutes();
+				var second = oDate.getSeconds();
+				if(hour < 10){
+					hour = "0"+hour
+				}
+				if(minute < 10){
+					minute = "0"+minute
+				}
+				if(second < 10){
+					second = "0"+second
+				}
+				
+				var str = "" + hour + minute + second;
+				
+				
+				img0.src = "img/" + str[0] + ".png";
+				img1.src = "img/" + str[1] + ".png";
+				img2.src = "img/" + str[2] + ".png";
+				img3.src = "img/" + str[3] + ".png";
+				img4.src = "img/" + str[4] + ".png";
+				img5.src = "img/" + str[5] + ".png";
+			}
+			move();
+			
+			setInterval(function(){
+				
+				 move();
+				
+			},1000)
+			 
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

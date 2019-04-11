@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="isCompact.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+			}
+			#box{
+				background: red;
+			}
+			#btn{
+				background: blue;
+				top: 150px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="btn"></div>
+		<script type="text/javascript">
+			var oBox = document.getElementById("box")
+		 	var oBtn = document.getElementById("btn")
+		 	
+		 	function move(obj){
+				obj.onmousedown = function(e){
+					var evt = e || event;
+					var x = evt.offsetX;
+					var y = evt.offsetY;
+					document.onmousemove = function(e){
+						obj.style.zIndex = 10;
+						var evt = e || event;
+						var left = evt.clientX - x;
+						var top = evt.clientY - y;
+						
+						obj.style.left = left + "px";
+						obj.style.top = top + "px"
+						
+					}
+					obj.onmouseup = function(){
+						document.onmousemove = null;
+						console.log(isCompact(oBox,oBtn)) 
+					}
+				}
+			}
+					 	
+			move(oBox);
+			move(oBtn);
+			 
+		</script>
+	</body>
+</html>

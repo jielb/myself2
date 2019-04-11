@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--<script type="text/javascript">
+			//输出100-200之间所有的素数
+			for(var i=100;i<=200;i++){
+				for(var j = 2;j<i;j++){
+					if(i%j == 0){
+						break;
+					}
+				}
+				if(i==j){
+						document.write(i+"<br/>")
+					}
+			}
+
+		</script>-->
+		<!--<script type="text/javascript">
+			//求1+2!+3!+...+20!的值
+			var sum=0;
+			var jc = 1;
+			for(var i=1;i<=20;i++){
+				jc*=i;
+				sum+=jc; 
+			}
+			document.write(sum)
+			 
+		
+		</script>-->
+		<!--<script type="text/javascript">
+			//篮球从5米高的地方掉下来，每次弹起的高度是原来的30%，经过几次弹起，篮球的弹起高度小于0.1米。
+				var count = 1;
+				for(var i=5;i>=0.1;i=i*0.3){
+					count++;
+				}
+				 document.write(count)
+		</script>-->
+		<!--<script type="text/javascript">
+			/*有一个棋盘，有64个方格，在第一个方格里面放1粒芝麻重量是0.00001kg，第二个里面放2粒，第三个里面放4，棋盘上放的所有芝麻的重量
+*/
+			
+			var sum = 1;
+			for(var i=1;i<64;i++){
+				sum = sum +Math.pow(2,i)
+			}
+			sum = sum * 0.00001
+			document.write(sum+"kg")
+		</script>-->
+	</body>
+</html>

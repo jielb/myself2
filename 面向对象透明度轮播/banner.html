@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="banner.js" type="text/javascript" charset="utf-8"></script>
+		<script src="common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,ul,li{
+				margin: 0;
+				padding: 0;
+			}
+			img{
+				display: block;
+				border: none;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+			}
+			#banner{
+				position: relative;
+				width: 500px;
+				height: 300px;
+				margin: 50px 300px;
+			} 
+			
+			#banner ul:nth-of-type(1) li  img{
+				width: 500px;
+				height: 300px;
+				position: absolute;
+				opacity: 0;
+			} 
+			
+			#banner ul:nth-of-type(1) li:first-child img{
+				opacity: 1;
+			}
+			#banner div{
+				position: absolute;
+				top: 50%;
+				margin-top: -30px;
+			}
+			#banner div span{
+				position: absolute;
+				width: 20px;
+				height: 30px;
+				display: block;
+				float: left;
+				font-size: 20px;
+				text-align: center;
+				line-height: 30px;
+				background: black;
+				opacity: .5;
+				filter: alpha(opacity=50);
+				cursor: pointer;
+				color: white;
+			}
+			#banner div span:first-child {
+				left: 10px;
+			}
+			#banner div span:last-child{
+				left: 470px;
+			}
+			
+			#banner ul:nth-of-type(2){
+				position: absolute;
+				right: 10px;
+				bottom: 15px;
+			}
+			#banner ul:nth-of-type(2) li{
+				width: 20px;
+				height: 20px;
+				font-size: 16px;
+				line-height: 20px;
+				text-align: center;
+				float: left;
+				margin-left: 10px;
+				border-radius: 50%;
+				background: white;
+				color: red;
+				cursor: pointer;
+			}
+			#banner ul:nth-of-type(2) li:hover,#banner ul:nth-of-type(2) li.hover{
+				background: red;
+				color: white;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="banner"></div>
+		<script type="text/javascript">
+			var data = [{imgsrc:"imgs/1.jpg"},{imgsrc:"imgs/2.jpg"},{imgsrc:"imgs/3.jpg"}]
+			
+			var banner = new Banner("banner")
+			banner.setstyle(data);
+			banner.setbutton();
+			banner.setnums()
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

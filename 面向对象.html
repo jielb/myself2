@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*//工厂函数
+			// 缺点：不能确定一个对象的类型
+			//如何判断一个对象（实例）属于哪一类    instanceof
+			function createObject(name,age){
+				var obj = new Object();//创建了一个实例 
+				obj.name1 = name;
+				obj.age1 = age;
+				obj.sayHello = function(){
+					console.log(this.name)
+				}
+				return obj;
+			}
+			var person1 = createObject("join1","21")
+			//console.log(person1 instanceof Object); // true
+			var person2 = createObject("join2","22")
+			//console.log(person2 instanceof Object); //true 
+			//console.log(person1 == person2) // false  //1和2 是两个不同对象
+			var animal = createObject("aaa",20)
+			//console.log(animal instanceof Object)//true*/
+			
+			
+			
+			
+			//构造函数
+			/*function Foo(name,age){
+				var name1 = name;
+				var age = age; //通过var 来声明的变量通过实例访问不到
+				
+			}*/
+			/*var foo = new Foo("join",20)
+			console.log(foo)//Foo{}  //foo 是一个实例（对象），访问一个空对象，得到undefined
+			console.log(foo.name1)//undefined  
+			
+			/*var foo = Foo("join",20)
+			console.log(foo)//undefined //没有return返回值  ===》return没有返回值，默认取值undeefined
+			console.log(foo.name1)//报错  //无法读取未定义的name1*/
+			
+			
+		    // 	构造函数
+		    //  缺点：每创建一个实例，就新建了一个实例方法，增加了内存开销（造成代码冗余）
+		    //  优点：能具体到一个对象属于哪一类
+		      
+		    //  构造函数内部通过this目的：让所有的实例都具备对应的属性和方法
+		    function Anima(name,age){
+		    	this.name1 = name; // 实例属性
+		    	this.age = age;
+		    	this.sayHello = function(){
+		    		console.log(this.name)
+		    	}
+		    } 
+		    var animal = new Animal("dongwu",20)
+		    console.log(animal instanceof Animal,animal instanceof Object,animal instanceof Person) // true true false  具体到哪一类
+		    
+		    function Person(color,name,age){
+		    	var color = color; // 私有属性，只能在函数内部进行访问
+		    	this.name1 = name; // 实例属性
+		    	this.age = age;
+		    	this.sayHello = function(){
+		    		console.log(this.name)
+		    	}
+		    }
+		    var foo = new Person("join",20);
+		    console.log(foo.name1)
+		    var person1 = new Person("john1",21);
+			var person2 = new Person("john2",22);
+	 
+			console.log(person1.sayHello == person2.sayHello); //false
+		     
+		     
+		     
+		     
+		</script>
+		
+		
+	</body>
+</html>

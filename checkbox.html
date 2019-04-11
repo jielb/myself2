@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<input type="checkbox"/>
+		<script type="text/javascript">
+			var oInput = document.getElementsByTagName("input")[0];
+			
+			oInput.onblur = function(){
+				console.log(oInput.checked)
+			}
+			
+			
+		</script>
+	</body>
+</html>

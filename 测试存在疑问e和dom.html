@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>BOM和DOM 问题测试</title>
+		<style type="text/css">
+		body,p{
+			margin: 0;
+			padding: 0;
+		}
+		/*#box{ 
+			margin: 20px 0 0 200px;
+			width: 600px;
+			height: 500px;
+			border: 10px solid #00BFFF;
+		}
+		#box1{
+			width: 100px;
+			height: 100px;
+			margin: 60px 0 0 200px;
+			border: 5px solid #00FFFF;
+		}*/
+		
+		
+	/*	#scrol{
+			margin: 50px auto;
+			width: 300px;
+			height: 100px;
+			overflow: auto;
+		}*/
+		</style>
+	</head>
+	<body>
+		<!--<div id="box">
+			<div id="box1">
+				 
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+			var oBox = document.getElementById("box");
+			var oFox = document.getElementById("box1")
+			
+			//offsetLeft、offssetTop 与定位父级有关
+			/*console.log(oBox.offsetLeft);
+			console.log(oFox.offsetLeft);
+			console.log(oBox.offsetTop);
+			console.log(oFox.offsetTop);*/
+			
+			//offsetLeft offsetTop  只与自身的width、border、padding有关
+			/*console.log(oBox.offsetWidth)
+			console.log(oFox.offsetWidth)
+			console.log(oBox.offsetHeight)
+			console.log(oFox.offsetHeight)*/
+			
+			//clientWidth clientHeight 只与自身的width、padding有关
+			/*console.log(oBox.clientWidth)
+			console.log(oFox.clientWidth)*/
+			
+			
+			
+			 
+			
+			//页面事件
+			/*document.onmousemove = function(e){
+				var e = e || event;
+				//clientX clientY 可视区域的宽和高
+				console.log(e.clientX)
+				console.log(e.clientY)
+			}*/
+			
+			//具体到某一个DOM对象上边
+			/*oBox.onmousemove = function(e){
+				var e = e || event;
+				//clientX clientY 在该对象范围内才能显示到可视区域边缘的宽和高
+				console.log(e.clientX)
+				console.log(e.clientY)
+			}*/
+			
+			///页面事件
+			/*document.onclick = function(e){
+				var e = e || event;
+				//offsetX offsetY 可视区域的宽和高
+				console.log(e.offsetX)
+				console.log(e.offsetY)
+			}*/
+			//具体到某一个DOM对象
+			/*oBox.onclick = function(e){
+				var e = e || event;
+				//offsetX offsetY 该DOM对象内部宽和高;如果有边框则在边框左和上移动时，值为负值
+				console.log(e.offsetX)
+				console.log(e.offsetY)
+			}
+			*/
+			
+			//pageX、pageY 距离到页面左边和顶部距离
+			/*oBox.onclick = function(e){
+				var e = e || event;
+				console.log(e.pageX);
+				console.log(e.pageY)
+			}*/
+			
+			//oFox.style.width  结果带“px”单位
+			/*console.log(oFox.style.width)*/
+			
+		</script>-->
+		
+		
+		
+		<!--
+		<div id="scrol">
+			<p>123</p>
+			<p>123</p>
+			<p>123</p>
+			<p>123</p>
+			<p>123</p>
+			<p>123</p>
+			<p>123</p>
+			<p>123</p>
+			<p>123</p>
+		</div>
+			<script type="text/javascript">
+				var oBox = document.getElementById("scrol")
+				oBox.onscroll = function(){
+					console.log(oBox.scrollTop)
+				}
+				
+			</script>-->
+			
+	</body>
+</html>

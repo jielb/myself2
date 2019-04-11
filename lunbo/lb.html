@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,
+			ul,
+			li {
+				padding: 0;
+				margin: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			img {
+				display: block;
+				border: none;
+				width: 900px;
+				height: 300px;
+			}
+			
+			#box {
+				width: 900px;
+				height: 300px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			#box ul:nth-of-type(1) {
+				position: absolute;
+			}
+			
+			#box ul:nth-of-type(1) li {
+				position: absolute;
+				opacity: 0;
+			}
+			
+			#box ul:nth-of-type(1) li:first-child {
+				opacity: 1;
+			}
+			
+			#box div span {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				background: #333;
+				opacity: .5;
+				color: white;
+				text-align: center;
+				line-height: 50px;
+				font-size: 50px;
+				top: 50%;
+				margin-top: -25px;
+				cursor: pointer;
+			}
+			
+			#box div span:first-child {
+				left: 20px;
+			}
+			
+			#box div span:last-child {
+				left: 830px;
+			}
+			
+			#box ul:nth-of-type(2) {
+				position: absolute;
+				right: 20px;
+				bottom: 20px;
+			}
+			
+			#box ul:nth-of-type(2) li {
+				float: left;
+				margin: 0 10px;
+				width: 20px;
+				height: 20px;
+				font-size: 14px;
+				text-align: center;
+				line-height: 20px;
+				border-radius: 50%;
+				background: white;
+				color: red;
+				cursor: pointer;
+			}
+			
+			#box ul:nth-of-type(2) li:hover,
+			#box ul:nth-of-type(2) li.hover {
+				background: red;
+				color: white;
+			}
+		</style>
+		<script type="text/javascript" src="move.js" ></script>
+		<script type="text/javascript" src="lb.js" ></script>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+		<script type="text/javascript">
+			var data = [{"url":"#","imgsrc":"img/1.jpg"},{"url":"#","imgsrc":"img/2.jpg"},{"url":"#","imgsrc":"img/3.jpg"}];
+			var lbt1=new Lbt("box");
+			lbt1.createBaseDOM(data);
+			lbt1.createBtn();
+			lbt1.createNums();
+		</script>
+	</body>
+</html>

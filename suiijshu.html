@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 200px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				margin: 100px auto;
+				/*border: 1px solid #CECECE;*/
+				background: #FF0000;
+			}
+			#btn{
+				margin-left: 700px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<input type="button" id="btn" value="随机颜色" />
+		<script type="text/javascript">
+			/*btn.onclick = function(){
+				var str = "0123456789ABCDEF"
+				var color = "#"
+				for(var i = 0;i < 6;i++){
+					var num= Math.floor(Math.random()*str.length);
+					color += str[num]
+				}
+				box.style.background = color;
+					
+			}*/
+			
+			//给文本框添加样式  
+			btn.onclick = function(){
+				box.style.height = parseInt(box.style.height) + 30 +"px";	 
+			}
+			btn.ondblclick = function(){
+				box.style.width = "600px";
+			}
+			
+		</script>
+	</body>
+</html>

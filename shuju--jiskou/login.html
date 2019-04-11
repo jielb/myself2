@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,p{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 300px;
+				height: 300px;
+				margin: 50px auto;
+			}
+			#box div{
+				width: 290px;
+				height: 50px;
+			}
+			#box div span{
+				width: 60px;
+				height: 35px;
+				display: block;
+				font-size: 12px;
+				background: #C1C1C1;
+				border: 1px;
+				float: left;
+				text-align: center;
+				line-height: 28px;
+			}
+			#box div input{
+				width: 200px;
+				height: 29px;
+			}
+			#box div p{
+				width: 290px;
+				height: 12px;
+				font-size: 5px;
+			    color: red;
+			}
+			#box div #btn{
+				width: 265px;
+				height: 35px;
+				text-align: center;
+				line-height: 35px;
+				background: #CCCCCC;
+				color: red;
+				font-size: 16px;
+				font-weight: 700;
+				border: none;
+				outline: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>
+				<span>用户名:</span>
+				<input type="text" id="username" />
+				 
+			</div>
+			<div>
+				<span>密码:</span>
+				<input type="password" id="pas" />
+				<p id="cont2"></p>
+			</div>
+			<div>
+				<input type="button" id="btn" value="登陆"/>	
+				<p id="cont1"></p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+					// 用户名
+				var yhm = null;
+				$("#username").blur(function() { 
+				   //用户名正则，4到16位（字母，数字，下划线，减号）  
+					var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+					//console.log(reg.test($("#username").val()))
+					if(reg.test($("#username").val()) == false) {
+						yhm = false;
+							$("#cont1").html("用户名为4到16位(字母,数字,下划线,减号)")
+						} else {
+							yhm = true;
+						}
+					})
+				
+				
+						
+				//密码  
+				var pass = null;
+				 
+				$("#pas").blur(function(){
+					//用户名正则，4到16位（字母，数字，下划线，减号）
+                    var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+					if(reg.test($("#pas").val())){
+						pass = true;
+					}else{
+						pass = false;
+						$("#cont2").html("密码4到16位（字母，数字，下划线，减号）")
+					}	
+				})
+				
+				$("#btn").click(function(){
+					console.log($("#username").val());
+					console.log($("#pas").val())
+					if(yhm == true && pass == true){
+						$.post("http://47.104.244.134:8080/userlogin.do", {
+								"name": $("#username").val(),
+								"password":$("#pas").val()
+							}, function(data) {
+								if(data.code == 0) {
+									$.cookie("token", data.data.token);
+									location.href = "index.html"
+								} else {
+									$("#cont1").html("用户名或密码输入错误")
+							}
+						})
+					}
+					
+					
+					
+				})
+				
+				
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>

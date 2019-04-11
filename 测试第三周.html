@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,
+			p,
+			ul,
+			li {
+				padding: 0;
+				margin: 0;
+			}
+			
+			a {
+				text-decoration: none;
+				color: black;
+			}
+			
+			li {
+				list-style: noen;
+			}
+			
+			img {
+				disply: block;
+				border: none;
+			}
+			/*a{
+				text-decoration: none;
+				color: black;
+			 	width: 50px;
+			 	height: 30px;
+			 	font-size: 13px;
+			 	line-height: 30px;
+			 	text-align: center;
+			 	display: block;
+			 }
+			 #sub{
+			 	outline: none;
+			 }
+			 
+			 div{
+			 	width: 20px;
+			 	height: 20px;
+			 	background: red;
+			 	position: absolute;
+			 }*/
+			/*li{
+				width: 200px;
+				height: 20px;
+				background: #00BFFF;
+				margin-bottom: 10px;
+			}*/
+			/*#box{
+				width: 300px;
+				height: 400px;
+				margin: 50px 0 0 300px;
+			}
+			#cont{
+				width: 260px;
+				height: 100px;
+				margin-bottom: 20px;
+				border: 1px solid #cecece;
+				overflow: auto;
+			}
+			#send{
+				width: 260px;
+				height: 30px;
+				line-height: 30px;
+				border: 1px solid #CECECC;
+				outline: none;
+			}
+			#btn{
+				width: 60px;
+				margin: 10px 0 0 200px;
+			}*/
+			
+			img {
+				position: absolute;
+				display: block;
+				border: none;
+				width: 80px;
+				height: 80px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<img src="peas.gif" id="btn" />
+		</div>
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn")
+			var oBox = document.getElementById("box")
+			oBtn.onmousedown = function(e) {
+				var evt = e || event;
+				var _x = evt.offsetX;
+				var _y = evt.offsetY;
+
+				var clone = oBtn.cloneNode();
+				
+				
+				document.onmousemove = function(e) {
+					var evt = e || event;
+					var x = evt.clientX - _x;
+					var y = evt.clientY - _y;
+
+					document.body.appendChild(clone);
+					clone.style.left = x + "px";
+					clone.style.top = y + "px";
+
+				}
+				document.onmouseup = function() {
+					document.onmousemove = "";
+				}
+
+			}
+		</script>
+
+		<!--<script type="text/javascript">
+			//getStyle封装
+			function getStyle(obj,attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[attr];
+				}
+				return obj.currentStyle[attr];
+			}
+			
+			//json = {"width":"100px";"opacity":0.7;"left":"30px"} 该json数据作为目标值进行传递
+			function startMove(obj,json){
+				clearInterval(obj.timer);
+				
+				obj.timer = setInterval(function(){
+					
+					if flag = true ;//假设作为目标值进行值传递
+					
+					for(var attr in json){
+						var iTarget = json[attr];//
+					
+						if(attr == "opacity"){
+							iCur = Math.round(getStyle(obj,attr)*100); 
+						}else{
+							iCur = parseInt(getStyle(obj,attr))
+						}
+					
+						var iSpeed = (iTarget - iCur)/8;
+					
+						iSpeed = iSpeed > 0 ; Math.ceil(iSpeed) : Math.floor(iSpeed);
+					
+						if(attr == "opacity"){
+							obj.style.opacity = (iCur + iSpeed)/100;
+							obj.style.filter = "alpha(opacity="+(iCur + iSpeed )+")"
+						}else{
+							obj.style[attr] = iCur + iSpeed + "px";
+						}
+						if(iSpeed != 0){
+							flag = false;
+						}
+					}
+					if(iSpeed == 0){
+						flag == true;
+						clearInterval(obj.timer)
+					}
+				},20)
+			 	
+			}
+	 	
+		</script>-->
+
+		<!--<div id="box">
+			<div id="cont"></div>
+			<input type="text" id="send" />
+			<input type="button" id="btn" value="发送" />
+		</div>
+		<script type="text/javascript">
+			let oCont = document.getElementById("cont");
+			let oSend = document.querySelector("#send");
+			let oBtn = document.getElementsByTagName("input")[1];
+			
+			oBtn.onclick = () =>{ 
+				oCont.innerHTML += "<p>"+oSend.value+"</p>";
+				oSend.value = ""
+				oCont.scrollTop = oCont.scrollHeight - oCont.clientHeight
+			}
+			
+			oSend.onkeydown = function(e){
+				var evt = e || event;
+				var code = evt.keyCode || evt.which;
+				if(evt.ctrlKey && code == 13){
+					oCont.innerHTML += "<p>"+oSend.value+"</p>";
+					/*oSend.value = ""*/
+					oCont.scrollTop = oCont.scrollHeight - oCont.clientHeight
+				}
+			}
+			
+			
+			
+		</script>
+		-->
+
+		<!--	<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<input type="button" id="btn" value="更多" />
+		<script type="text/javascript">
+			let oBtn = document.getElementById("btn");
+			let oUl = document.getElementsByTagName("ul")[0];
+			
+			oUl.onclick = function(e){ 
+				var evt = e || event;
+				var target = evt.target || evt.srcElement;
+				if(target.nodeName.toUpperCase() == "LI"){
+					console.log("aaa")
+				}
+			}
+			
+			
+			oBtn.onclick = () =>{
+				var oFragment = document.createDocumentFragment();
+				for(var i = 0 ; i < 5;i++){
+					var oLi = document.createElement("li");
+					oFragment.appendChild(oLi);
+				} 
+				oUl.appendChild(oFragment);
+			}
+			
+		</script>-->
+
+		<!--	<input type="text" id="txt" />-->
+		<!--<form>
+			<input type="text" name="username">
+			<input type="password" name="password">
+			<input type="submit" id="btn" value="登录"/>
+		</form>-->
+		<!-- <a href="2.18.html" id="btn">跳转</a>-->
+		<!--	<script type="text/javascript">
+			
+			/*let oBtn = document.getElementById("btn");
+			oBtn.onclick = () =>{
+			 	location.href = "http://www.baidu.com";
+			 	return false;
+			 }
+			*/
+		/*	let oSub = document.getElementById("sub");
+			var oForm = document.getElementsByTagName("form")[0];
+			oForm.onsubmit = () =>{
+				location.href = "http://www.baidu.com";
+				/*return false;
+			}*/
+			/*
+			let oTxt = document.getElementById("txt");
+			
+			oTxt.onkeypress = function(e){
+				var evt = e || event;
+				var code = evt.keyCode || evt.which;
+				console.log(code)
+				 if(code < 48 || code > 57){
+				 	
+				 	return false;
+				 }
+			}*/
+			
+			/*var oFragment = document.createDocumentFragment();
+			for(var i = 0;i < 10;i++){
+				var aDiv = document.createElement("div");
+				oFragment.appendChild(aDiv);
+			}
+			document.body.appendChild(oFragment) 
+			var oDiv = document.getElementsByTagName("div");
+			document.onmousemove = (e) =>{
+				var evt = e || event;
+				var x = evt.clientX;
+				var y = evt.clientY;
+				
+				oDiv[0].style.left = x + "px";
+				oDiv[0].style.top = y +"px";
+				
+				 oDiv[0].style.zIndx = 20;
+				for(var i = oDiv.length-1 ; i > 0; i--){
+					oDiv[i].style.left = oDiv[i-1].style.left;
+					oDiv[i].style.top = oDiv[i-1].style.top;
+					
+				}
+				
+			}
+			
+		 </script>-->
+	</body>
+
+</html>

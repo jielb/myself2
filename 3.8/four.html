@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				margin:0;
+				padding: 0;
+			}
+			#box{
+				width: 600px;
+				height: 32px; 
+				margin: 150px 0 0 300px;
+			}
+			#box #cont{
+				width: 30px;
+				height: 30px;
+				font-size: 14px;
+				line-height: 30px;
+				text-align: center;
+				border: 1px solid #cecece;
+				margin-right: 15px;
+				float: left;
+			}
+			#box #scroll{
+				width: 500px;
+				height: 20px; 
+				padding: 5px;
+				float: left;
+			}
+			#box #scroll span{
+				width: 20px;
+				height: 20px;
+				display: block;
+				float: left;
+				text-align: center;
+			}
+			#box #scroll #move{
+				position: relative;
+				width: 400px;
+				height: 10px;
+				border: 1px solid red;
+				border: 1px solid red;
+				float: left;
+				margin-top: 4px;
+				border-radius: 8px;
+			}
+			#box #scroll #move #bg.bg{
+				background: #00BFFF;
+			}
+			#box #scroll #move #btn{
+				position: absolute;
+				width: 5px;
+				height: 18px;
+				border: 1px solid #00BFFF;
+				border-radius: 3px;
+				background: #00BFFF;
+				cursor: pointer;
+				left: -7px;
+				top: -4px;
+			}
+			#box #scroll #move #bg{
+				position: absolute;
+				left: 0;
+				top: 0;
+				height: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"> 	
+			<div id="cont">0.00</div>
+			<div id="scroll">
+				<span>0</span>
+				<div id="move">
+					<div id="bg">
+						
+					</div>
+					<div id="btn"></div>
+				</div>
+				<span>1</span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function $(id){
+				return document.getElementById(id)
+			}
+			
+			let oBtn = $("btn");
+			let oMove = $("move");
+			let oCont = $("cont");
+			let oBg = $("bg") 
+			
+			oBtn.onmousedown = function(e){
+				
+				var evt = e || event;
+				var x = evt.offsetX;
+				var y = evt.offsetY;
+				
+				document.onmousemove = function(e){
+					var evt = e || event;
+					var _x = evt.clientX - x - 7;
+					var _y = evt.clinety - y - 7; 
+					
+					var left = _x - oMove.offsetLeft + 7;  
+					
+					if(left <= -7){
+						left = -7;
+					}
+					if(left >= oMove.offsetWidth - 7){
+						left = oMove.offsetWidth - 7;
+					} 
+					
+					oBtn.style.left = left + "px";
+					
+					 move();
+				
+					
+					return false; 	
+				} 
+				
+				document.onmouseup = function(){
+					
+					document.onmousemove = null;
+					
+				}
+				
+			}
+			
+			oMove.onclick = function(e){
+				var evt = e || event;
+				var x = evt.clientX;
+				
+				var left = x - oMove.offsetLeft - 7;
+				oBtn.style.left = left + "px";
+				/*startMove(oBtn,{left:left})*/
+				 
+				 
+				move(); 
+				 
+			}
+			 
+			function move(){
+				var allNum = oMove.offsetWidth; 
+				var num = parseFloat(oBtn.style.left);
+				var aVerage = parseFloat((num/allNum).toFixed(2))
+			 
+			/*	startMove(oBg,{width:num})*/
+				
+			oBg.style.width = oBtn.offsetLeft + 7 +"px";
+				oBg.className = "bg"; 
+				if(aVerage == 0){
+					oCont.innerHTML = "0.00"
+				}
+				oCont.innerHTML = aVerage
+			}
+			
+			
+		</script>
+		
+		
+		
+		
+		
+	</body>
+</html>
