@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8"> <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/cookie.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	</head>
+	<body>
+		
+		
+		<div class="panel panel-default" style="width: 90%;margin: 10px auto;border: 1px solid #cecece;" >
+		 	 
+		</div>
+	
+		<div class="container-fluid"> 
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			全选：<input type="checkbox" id="Ch" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span id="allbtn">删除</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			总数量:<span id="allnum">0</span>&nbsp;&nbsp;&nbsp;&nbsp; 
+			总价:<span id="allprice">0.0</span>
+		</div>
+	
+	
+	</body>
+	<script type="text/javascript">
+		$(function(){ 
+			/** 商品展示   **/
+			/*用户 uid*/var id = getCookie("name")
+			$.ajax({
+				type:"get",
+				url:"http://jx.xuzhixiang.top/ap/api/cart-list.php",
+				data:{id:id},
+				dataType:"json",
+				async:true,
+				success:function(data){ 
+					var data = data.data
+					console.log(data)
+					data.map(function(item){						
+						$(".panel-default").append(
+							`
+								<div class="panel-body" >
+									<input title="${item.pid}" price ="${item.pprice}" type="checkbox" class="ch"/>
+							  	 	<img src="${item.pimg}" style="width:500px;height:200px;margin:5px 10px;float:left;"/>
+							  	 	<p>${item.pname}</p>
+							  	 	<p>${item.pprice}</p> 
+							  	 	<span class="minus" price ="${item.pprice}" title="${item.pid}">-</span>
+							  	 	<input class="num" name="pernum" title ="${item.pid}" type="text" value="${item.pnum}">
+							  	 	<span class="add"  price="${item.pprice}" title="${item.pid}">+</span> 
+							  	 	<p class="aprice">${item.pprice*item.pnum}</p>
+							  	 	<input class="delbtn" type="button" title="${item.pid}" value="删除">
+								</div>
+							`
+						) 
+					});
+					
+					
+					/* 减号 */
+					$(".minus").click(function(){
+						console.log($(this).next().val()) 
+						/*商品 id*/ var id1 = this.getAttribute("title") 
+						/*商品 单价*/ var price = this.getAttribute("price") 
+						if($(this).next().val() <=1){
+							$(this).parent().remove()
+							/*删除数量小于1的商品*/
+							$.ajax({
+								type:"get",
+								url:"http://jx.xuzhixiang.top/ap/api/cart-delete.php",
+								dataType:"json",
+								data:{uid:id,pid:id1},
+								async:true,
+								success:function(data){
+									console.log(data)
+								}
+							});
+						} else{
+							$(this).next().val($(this).next().val() - 1)
+							/*更新用户购物车的商品数量 */
+							$(this).next().next().next().html($(this).next().val()*price)
+							$.ajax({
+								type:"get",
+								url:"http://jx.xuzhixiang.top/ap/api/cart-update-num.php",
+								dataType:"json",
+								data:{uid:id,pid:id1,pnum:$(this).next().val()},
+								async:true,
+								success:function(data){
+									
+								}
+							})
+						}
+					});
+					
+					/*  加号   */
+					
+					$(".add").click(function(){
+						$(this).prev().val(Number($(this).prev().val()) + 1)
+						/*商品 单价*/ var price = this.getAttribute("price") 	
+						/*商品 id*/ var id2 = this.getAttribute("title") 
+						/*更新用户购物车的商品数量 */
+							$(this).next().html($(this).prev().val()*price)
+						
+							$.ajax({
+								type:"get",
+								url:"http://jx.xuzhixiang.top/ap/api/cart-update-num.php",
+								dataType:"json",
+								data:{uid:id,pid:id2,pnum:$(this).prev().val()},
+								async:true,
+								success:function(data){
+									
+								}
+							})
+					})
+					
+					/* 点击删除按钮  删除单行商品   */
+					$(".delbtn").click(function(){
+						/*商品 id*/ var id3 = this.getAttribute("title") 
+						$(this).parent().remove()
+						$.ajax({
+								type:"get",
+								url:"http://jx.xuzhixiang.top/ap/api/cart-delete.php",
+								dataType:"json",
+								data:{uid:id,pid:id3},
+								async:true,
+								success:function(data){
+									console.log(data)
+								}
+						}); 
+					})
+					
+					/* 全选按钮  */
+			var num = 0; 
+			var price = 0
+			$("#Ch").click(function(){
+				$(".ch").prop("checked",$(this).prop("checked"))
+				/* 总数量 */
+				if($("#Ch").prop("checked") == true){
+					$.each($(".num"), function() {
+						num =num + Number($(this).val())
+					})
+					$("#allnum").html(num)
+				
+					/* 总价格  */
+					 
+					 $.each($(".aprice"),function() {
+						price = price + Number($(this).html()) 
+					});
+					$("#allprice").html(price)					
+				} else {
+					$("#allnum").html("0.0")
+					$("#allprice").html("0.00")	
+				}
+				 
+				
+			})   	
+			
+			//商品所有按钮点击后，全选按钮打钩     
+			var num1 = 0 ;
+			var price1 = 0;
+			$(".ch").click(function(){ 
+				/*商品 单价*/ var price = this.getAttribute("price") 	 
+				/*商品数量*/ var Num = $(this).siblings("input[name='pernum']").val() 
+				if($(".ch:checked").length == $(".ch").length){
+					$("#Ch").prop("checked",true)  
+				} else {
+					$("#Ch").prop("checked",false)  
+				}  
+				if($(this).prop("checked")){
+					num1 += Number(Num)
+					price1 += Num*price
+				} else {
+					num1 = num1 - Num
+					price1 = price1 - price*Num
+				}
+				$("#allnum").html(num1)
+				$("#allprice").html(price1)	
+				
+			});
+			
+			
+			
+		}
+	})
+})
+		 
+	</script>
+	
+</html>

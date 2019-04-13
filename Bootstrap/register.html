@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="firstname" class="col-sm-2 control-label">账号</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="firstname" placeholder="请输入账号">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lastname" class="col-sm-2 control-label">密码</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="lastname" placeholder="请输入密码">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input name="agree" type="checkbox">同意
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-default">注册</button>
+    </div>
+  </div>
+</form> 
+ 
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			$(".btn-default").click(function(){ 
+				$.ajax({
+					type:"get",
+					url:"http://jx.xuzhixiang.top/ap/api/reg.php",
+					dataType:"json",
+					data:{username:$("#firstname").val(),password:$("#lastname").val()},
+					async:true,
+					success:function(data1){
+						
+						if(data1.code == 1){
+							if($("input[name = 'agree']").prop("checked") == true){ 
+								location.href = "login.html"
+							}
+						}
+					}
+				})
+			}) 
+		})
+		
+		
+		
+		
+		
+	</script>
+	
+</html> 

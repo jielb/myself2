@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8"> <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/cookie.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	</head>
+	<body>
+		
+		
+		<div class="panel panel-default" style="width: 260px;height: 500px;margin: 50px auto;border: 1px solid #cecece;" >
+		 	 
+		</div>
+	
+	
+	
+	
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			var id = location.search.split("?")[1];	
+			/** 商品展示   **/
+			$.ajax({
+				type:"get",
+				url:"http://jx.xuzhixiang.top/ap/api/detail.php",
+				data:{id:id},
+				dataType:"json",
+				async:true,
+				success:function(data){
+					var data = data.data;
+					console.log(data)
+					$(".panel-default").append(
+						`
+							<div class="panel-body" >
+							  	 	<img src="${data.pimg}" style="width:200px;height:260px;"/>
+							  	 	<p >${data.pname}</p>
+							  	 	<p>${data.pprice}</p> 
+							  	 	<span id="minus">-</span>
+							  	 	<input id="num" type="text" value="1">
+							  	 	<span id="add">+</span>
+							  	 	<input id="addbtn" type="button" data-id="${data.pid}" value="加入购物车">
+							</div>
+						
+						
+						`
+					)
+					
+					/**加号**/
+					$("#add").click(function(){ 
+						$(this).prev().val(Number($(this).prev().val()) + 1)
+					})
+					
+					/*减号*/
+					$("#minus").click(function(){
+						if($(this).next().val() <= 1){
+							$("#minus").click(function(){
+								return false;
+							})
+							$(this).next().val("1")
+						} else {
+							$(this).next().val($(this).next().val() - 1)
+						}
+					})
+					
+					
+					/** 点击加入购物车 **/
+					$("#addbtn").click(function(){ 
+						if(getCookie("name") != null){
+						/*商品*/	var id = this.getAttribute("data-id")
+						/*用户*/	var uid = getCookie("name")
+						/*数量*/	var num = $("#num").val()
+							console.log(num)
+							$.ajax({
+								type:"get",
+								url:"http://jx.xuzhixiang.top/ap/api/add-product.php",
+								dataType:"json",
+								data:{uid:uid,pid:id,pnum:num},
+								async:true,
+								success:function(data){
+									location.href = "cart.html"
+								}
+							});
+						} else {
+							location.href = "login.html"
+						}
+					}) 	
+				}	
+			});
+			
+		})
+		 
+	</script>
+	
+</html>
