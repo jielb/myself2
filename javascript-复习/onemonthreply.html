@@ -62,15 +62,15 @@
         // var a = 1;
         // var b = a-- || a;
         // console.log(a,b) // 0 1
-
-        // var a = 0;
-        // var b = a || a++;
-        // console.log(a,b) //  1 0
-
+        
+        var a = 0;
+        var b = a || a++;
+        console.log(a,b) //  1 0
+        
         // let a = 0;
         // let b = a || ++a
         // console.log(a,b) // 1 1
-
+        
         // var a = 10;
         // let b = a++ + a++ + ++a - a - a-- - --a - a;
         // let c = 10  + 11  + 13 - 13 - 13 - 11 - 11
@@ -92,8 +92,10 @@
         // console.log(a) // 10
         // foo(10)  // 10 10 9 10
 
+
             // console.log(a)
             // let a = 10;
+            
             
             // let a = 10;
             // console.log(a);
@@ -150,19 +152,19 @@
             // console.log(a)
 
 
-             function foo(a){
-                a++;
-                console.log(a);
-                return  --a;
-                console.log(a);
-            }
-            console.log(a)
-            var a = 10 ;
-            console.log(a)
-            foo(20);
-            console.log(a)
+              function foo(a){
+                 a++;
+                 console.log(a);
+                 return  --a;
+                 console.log(a);
+             }
+             console.log(a)
+             var a = 10 ;
+             console.log(a)
+             foo(20);
+             console.log(a)
 
-    </script>
+    </script> 
 
 </body>
 </html>

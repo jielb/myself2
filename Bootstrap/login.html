@@ -54,6 +54,7 @@
 					data:{username:$("#firstname").val(),password:$("#lastname").val()},
 					async:true,
 					success:function(data1){ 
+							console.log(data1)
 						if(data1.code == 1){
 							var uid = data1.data.id;
 							var name = data1.data.username;
